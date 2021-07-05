@@ -2,6 +2,86 @@
 
 \begin{document}
 
-temp
+\section{Metrické prostory}
+
+\begin{definition}[Metrický prostor]
+    Metrický prostor je dvojice $(M,d)$ množiny $M\neq \emptyset$ a zobrazení \[d: M \times M \to \mathbb{R}\]
+    zvaného \underline{metrika} či \underline{vzdálenost}, které $\forall x,y,z \in M$ splňuje:
+    \begin{enumerate}
+        \item $d(x,y) = 0 \iff x=y$
+        \item $d(x,y) = d(y,x)$
+        \item $d(x,y) \leq d(x,z) + d(z,y)$
+    \end{enumerate}
+    Z těchto podmínek plyne i $d(x,y) \geq 0$.
+\end{definition}
+
+\begin{definition}[Podprostor]
+    Každá podmnožina $X \subset M$ určuje nový metrický prostor $(X,d')$, tak zvaný podprostor
+    metrického prostoru $(M,d)$. Pro $x,y \in X$ klademe $d'(x,y) := d(x,y)$.
+    Obě metriky označíme stejným symbolem a máme $(X,d)$.
+\end{definition}
+
+\begin{definition}[Izometrie]
+    Izometrie $f$ dvou metrických prostorů $(M,d)$ a $(N,e)$ je bijekce $f: M\to N$, jež zachovává vzdálenosti:
+    \[ \forall x,y \in M: d(x,y) = e(f(x), f(y)) \]
+    Existuje-li $f$, prostory $M$ a $N$ jsou \underline{izometrické}. Znamená to, že jsou fakticky nerozlišitelné.
+\end{definition}
+
+\begin{example}[Euklidovský prostor]
+    Euklidovský prostor $(\mathbb{R}^n, e_n), n \in \mathbb{N}$, s metrikou $e_n$ danou pro
+    $\overline{x}, \overline{y}\footnote{$\overline{x} = (x_1,\dots , x_n), \overline{y} = (y_1,\dots , y_n)$} \in \mathbb{R}^n$ formulí
+    \[ e_n(\overline{x}, \overline{y}) := \sqrt{\sum_{i=1}^{n} (x_i - y_i)^2} \]
+    Geometricky je $e_n$ délka úsečky určené body $\overline{x}$ a $\overline{y}$. Euklidovským prostorem pak
+    rozumíme obecněji každý podprostor $(X, e_n)$, když $X \subset \mathbb{R}^n$.
+\end{example}
+
+\begin{example}[Sférická metrika]
+    Jako \[S := \{ (x_1,x_2,x_3) \in \mathbb{R}^3 \mid x_1^2 + x_2^2 + x_3^3 = 1 \}\] si označíme \underline{jednotkovou sféru} v
+    euklidovském prostoru $\mathbb{R}^n$. Funkci $s: S\times S \to [0,\pi]$ definujeme pro $\overline{x}, \overline{y} \in S$
+    jako \[ s(\overline{x}, \overline{y}) = \begin{cases}
+        0 \dots \overline{x} = \overline{y}\\
+        \varphi \dots \overline{x} \neq \overline{y}
+    \end{cases} \]
+    kde $\varphi$ je úhel sevřený dvěma přimkami procházejícímí počátkem $\overline{0}$ a body $\overline{x}$ a $\overline{y}$.
+    Tento úhel je vlastně délka kratšího z oblouků mezi body $\overline{x}$ a $\overline{y}$ na jednotkové kružnici vytknuté na $S$ rovinou určenou
+    počátkem a body $\overline{x}$ a $\overline{y}$. Funkci $s$ nazveme sférickou metrikou.
+\end{example}
+
+\begin{lemma}
+    $(S,s)$ je metrický prostor.
+\end{lemma}
+
+\begin{definition}[(Horní) hemisféra]
+    (Horní) hemisféra $H$ je množina \[ H := \{ (x_1,x_2,x_3) \in S \mid x_3 \geq 0 \} \subset S \]
+\end{definition}
+
+\begin{theorem}[$H$ není plochá]
+    Metrický prostor $(H,s)$ není izometrický žádnému Euklidovskému prostoru $(X,e_n)$ s $X \subset \mathbb{R}^n$    
+\end{theorem}
+
+\begin{definition}[Ultrametrika]
+    Metrika $d$ v metrickém prostoru $(M,d)$ je ultrametrika(nearchimédovká metrika),
+    pokud splňuje \underline{silnou trojúhelníkovou nerovnost}
+    \[ \forall x,y,z \in M: d(x,y) \leq \max(d(x,z), d(z,y)) \]
+    Protože $\max(d(x,z), d(z,y)) \leq d(x,z) + d(z,y)$, je každá ultrametrika metrika.
+    V ultrametrických prostorech nefunguje intuice založená na Euklidovských prostorech.
+\end{definition}
+
+\begin{lemma}[Trojúhelníky v ultrametrickém prostoru]
+    V ultrametrickém prostoru $(M,d)$ je každý trojúhelník rovnoramenný, to jest má dvě stejně dlouhé strany.
+\end{lemma}
+
+\begin{definition}[Otevřená koule]
+    (Otevřená) koule v metrickém prostoru $(M,d)$ se středem v $a \in M$ a poloměrem $r > 0$ je podmnožina
+    \[ B(a,r) := \{ x \in M \mid d(x,a) < r \} \subset M \]
+    Vždy $B(a,r) \neq \emptyset$, protože $a \in B(a,r)$.
+\end{definition}
+
+\noindent
+$p$-adické metriky jsem prozatím vynechal.
+
+% Konec prvni prednasky
+
+
 
 \end{document}
