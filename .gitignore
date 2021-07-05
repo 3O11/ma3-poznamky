@@ -274,3 +274,6 @@ TSWLatexianTemp*
 
 # Makeindex log files
 *.lpz
+
+# Subfile PDFs
+Chapters/01-MetrickeProstory.tex
