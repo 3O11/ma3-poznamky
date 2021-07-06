@@ -3,9 +3,243 @@
 \begin{document}
     
 \section{Řady}
+
+\subsection{Definice}
+
+\begin{definition}[Řada, konvergence a divergence řady]
+    Řada $\sum a_n = \sum_{n=1}^{\infty} a_n$
+    je posloupnost $(a_n) \subset \mathbb{R}$, které je přiřazena
+    posloupnost \underline{částečných součtů} \[ (s_n) := (a_1 + \dots + a_n) \subset \mathbb{R}. \]
+    Pokud posloupnost $(s_n)$ má limitu, řekneme, že řada \underline{má součet}.
+    Je-li tato limita vlastní($\in \mathbb{R}$), pak řada \underline{konverguje},
+    jinak(součet je $\pm \infty$ nebo neexistuje) \underline{diverguje}.
+    Součet řady se označuje stejným symbolem jako řada sama, takže také
+    \[ \sum a_n = \sum_{n=1}^{\infty} a_n := \lim s_n = \lim (a_1 + \dots + a_n). \]
+\end{definition}
+
+\begin{lemma}[Nutná podmínka konvergence]
+    Když řada $\sum a_n$ konverguje, pak $\lim a_n = 0$.
+\end{lemma}
+
+% This deserves some reformatting, but I'm not sure how I'd improve it.
+
+\begin{lemma}[Harmonická řada]
+    \[ \sum \frac{1}{n} = +\infty \]
+\end{lemma}
+
+\begin{lemma}
+    \[ \sum \frac{1}{(n+1)n} = \frac{1}{n^2} = 1 \]
+\end{lemma}
+
+\begin{lemma}[Geometrická řada]
+    Pro každé $q \in (-1,1)$ je \[ \sum_{n=1}^{\infty} q^n = \frac{1}{1-q} \]
+\end{lemma}
+
+\begin{lemma}[Leibnizovo kritérium]
+    Když $a_1 \geq a_2 \geq \dots \geq 0$ a $\lim a_n = 0$, pak řada $\sum (-1)^{n-1}a_n = a_1 - a_2 + a_3 - \dots$ konverguje.
+\end{lemma}
+
+\subsection{Fourierova řada funkce}
+
+\begin{definition}[Trigonometrická řada]
+    Trigonometrická řada je řada \[ \frac{a_0}{2} + \sum_{n=1}^{\infty} (a_n\cos(nx) + b_n\sin(nx)), \]
+    kde $a_n,b_n$ jsou její \underline{koeficienty} a $x\in \mathbb{R}$ je proměnná.
+\end{definition}
+
+\noindent
+Trigonometrická řada je fakticky parametrický systém řad parametrizovaný proměnnou $x$.
+Chceme odvodit vyjádření široké třídy funkcí $f:[-\pi,\pi]\to \mathbb{R}$,
+pomocí trigonometrických řad.
+
+\begin{definition}[Skoro skalární součin]
+    Nechť $\mathcal{R}(-\pi,\pi)$ je množina všech funkcí $f:[-\pi,\pi]\to \mathbb{R}$, které
+    mají na $[-\pi,\pi]$ Riemannův integrál. Pro $f,g \in \mathcal{R}(-\pi,\pi)$ definujeme
+    \[ \left< f,g \right> := \int_{-\pi}^{\pi} fg \in \mathbb{R}.\footnote{Z teorie Riemannova integrálu plyne, že pokud $f,g \in \mathcal{R}(-\pi,\pi)$, pak i $fg \in \mathcal{R}(-\pi,\pi)$.} \]
+\end{definition}
+
+\noindent
+Pro tento skoro skalární součin platí následující
+\begin{lemma}[Symetrie, nezápornost a linearita skoro skalárního součinu]
+    {\color{white} x}
+    \begin{enumerate}
+        \item $\left< f,g \right> = \left< g,f \right>$
+        \item $\left< f,f \right> = \geq 0$
+        \item $\left< af + bg, h \right> = a\left< f,h \right> + b\left< g,h \right>$
+    \end{enumerate}
+\end{lemma}
+\noindent
+ale
+\begin{lemma}
+    Ekvivalence
+    $\left< f,f \right> = 0 \iff f \equiv 0 $
+    neplatí.
+\end{lemma}
+
+\begin{definition}[$2\pi$-periodická funkce]
+    Funkce je $2\pi$-periodická, když pro každé $x \in \mathbb{R}$ je $f(x + 2\pi) = f(x)$.
+\end{definition}
+
+\begin{lemma}[Ortogonalita sinů a cosinů]
+    Pro každá dvě celá čísla $m,n\geq 0$ je \[ \left< \sin(mx),\cos(nx) \right> = 0. \]
+    Pro každá dvě delá čísla $m,n\geq 0$, kromě $m=n=0$, je
+    \[ \left< \sin(mx), \sin(nx) \right> = \left< \cos(mx), \cos(nx) \right> =
+    \begin{cases} \pi \hspace{2mm} \dots \hspace{2mm} m=n\\ 0 \hspace{2mm} \dots \hspace{2mm} m\neq n. \end{cases} \]
+    Konečně
+    \[ \left< \sin(0x), \sin(0x) \right> = 0 \hspace{5mm} a \hspace{5mm} \left< \cos(0x), \cos(0x) \right> = 2\pi. \]
+\end{lemma}
+
+\begin{definition}[Kosinové a sinové Fourierovy koeficienty]
+    Pro každou funkci $f \in \mathcal{R}(-\pi,\pi)$ definujeme její
+    \underline{kosinové} Fourierovy koeficienty
+    \[ a_n := \frac{\left< f(x), \cos(nx) \right>}{\pi} = \frac{1}{\pi}\int_{-\pi}^{\pi}f(x)\cos(nx)\,\text{dx}, n = 0,1,\dots \]
+    a \underline{sinové} Fourierovy koeficienty
+    \[ b_n := \frac{\left< f(x), \sin(nx) \right>}{\pi} = \frac{1}{\pi}\int_{-\pi}^{\pi}f(x)\sin(nx)\,\text{dx}, n = 1,2,\dots \]
+\end{definition}
+
+\begin{definition}[Fourierova řada funkce]
+    Fourierova řada funkce $f$($\in \mathcal{R}(-\pi,\pi)$) je trigonometrická řada
+    \[ F_f(x) := \frac{a_0}{2} + \sum_{n=1}^{\infty} \left( a_n \cos(nx) + b_n \sin(nx) \right), \]
+    kde $a_n$ a $b_n$ jsou po řadě její kosinové a sinové Fourierovy koeficienty.
+\end{definition}
+
+\noindent
+Geometricky nahlíženo, pracujeme v nekonečně rozměrném vektorovém prostoru se (skoro) skalárním součinem $\left<\cdot,\cdot\right>$,
+v němž jsou \uv{souřadnými osami}(prvky ortogonální báze) funkce
+\[ \{ \cos(nx) \mid n\in \mathbb{N}_0 \} \cup \{ \cos(nx) \mid n\in \mathbb{N} \} \]
+V kontrastu s kartézskými souřadnicemi bodů v $\mathbb{R}^n$ se ale zdaleka ne každá funkce rovná součtu
+své Fourierovy řady.
+
+\begin{theorem}[Besselova nerovnost]
+    Pro Fourierovy koeficienty $a_n$ a $b_n$ funkce $f \in \mathcal{R}(-\pi,\pi)$ platí nerovnost
+    \[ \frac{a_0^2}{2} + \sum_{n=1}^{\infty}(a_n^2+b_n^2) \leq \frac{\left<f,f\right>}{\pi} = \frac{1}{\pi}\int_{-\pi}^{\pi}f^2. \]
+\end{theorem}
+\begin{proof}
+    \LARGE
+    \textbf{TODO}
+\end{proof}
+
+\begin{lemma}[Riemannovo-Lebesgueovo lemma]
+    Pro každou funkci $f \in \mathcal{R}(-\pi,\pi)$ je\footnote{Lze dokázat pomocí Besselovy nerovnosti.}
+    \[ \lim_{n\to\infty} \int_{-\pi}^{\pi}f(x)\sin(nx)\,\text{dx} = \lim_{n\to\infty} \int_{-\pi}^{\pi}f(x)\cos(nx)\,\text{dx} = 0 \]
+\end{lemma}
+
+\begin{definition}[Po částech hladká funkce]
+    Funkce $f: [a,b] \to \mathbb{R}$, kde $a<b$ jsou reálná čísla, je po částech hladká, když
+    existuje takové dělení
+    \[ a = a_0 < a_1 < a_2 < \dots < a_k = b, k \in \mathbb{N}, \]
+    intervalu $[a,b]$, že na každém intervalu $a_{i-1}, a_i, i = 1,2,\dots,k$, má
+    spojitou derivaci $f'$ a pro každé $i=1,2,\dots,k$ existují vlastní jednostranné limity
+    \[ f(a_i - 0) := \lim_{x\to a_i^-}f(x) \hspace{3mm} \text{a} \hspace{3mm} f'(a_i - 0) := \lim_{x\to a_i^-}f'(x) \]
+    a pro každé $i=0,1,\dots,k-1$ existují vlastní jednostranné limity
+    \[ f(a_i + 0) := \lim_{x\to a_i^+}f(x) \hspace{3mm} \text{a} \hspace{3mm} f'(a_i - 0) := \lim_{x\to a_i^+}f'(x) \]
+\end{definition}
+
+\noindent
+Po částech hladká funkce tedy může být v několika bodech intervalu $[a,b]$ nespojitá,
+ale v bodech nespojitosti má vlastní jednostranné limity a má v nich definované jednostranné nesvislé tečny.
+
+\begin{lemma}[O Dirichletově jádře]
+    Nechť $n \in \mathbb{N}$ a
+    \[ J_n(x) := \frac{1}{2} + \cos(x) + cos(2x) + \dots + \cos(nx). \]
+    Pak pro každé $x \in \mathbb{R} \backslash \{ 2k\pi \mid k \in \mathbb{Z} \}$
+    máme \[ J_n(x) = \frac{\sin\left(\left(n + \frac{1}{2}\right)x\right)}{2\sin\left(\frac{x}{2}\right)}. \]
+    také
+    \[ \frac{1}{\pi}\int_{-\pi}^{0} J_n(x)\,\text{dx} = \frac{1}{\pi}\int_{0}^{\pi} J_n(x)\,\text{dx} = \frac{1}{2}. \] 
+\end{lemma}
+
+\begin{theorem}[Dirichletova]
+    Nechť $f:\mathbb{R}\to\mathbb{R}$ je taková $2\pi$-periodická funkce, že její zúžení na interval $[-\pi,\pi]$
+    je po částech hladké. Pak její Fourierova řada $F_f(x)$ má pro každé $a\in\mathbb{R}$ součet
+    \[ F_f(a) = \frac{f(a+0) + f(a-0)}{2} = \frac{\lim_{x\to a_i^+}f(x) + \lim_{x\to a_i^-}f(x)}{2} \]
+    V každém bodu spojitosti $a\in\mathbb{R}$ funkce $f(x)$ tedy její Fourierova řada má součet rovný
+    funkční hodnotě, $F_f(a) = f(a)$.
+\end{theorem}
+
+\begin{definition}[Hladká funkce]
+    Řekneme, že funkce $f:[a,b]\to \mathbb{R}$ je hladká, když má na intervalu $(a,b)$ spojitou derivaci $f'$ a v krajních
+    bodech $a$ a $b$ mají $f(x)$ a $f'(x)$ vlastní jednostranné limity.
+\end{definition}
+
+\begin{consequence}[O hladké funkci]
+    Nechť $f:\mathbb{R}\to\mathbb{R}$ je $2\pi$-periodická a spojitá funkce, jejíž
+    zůžení na interval $[-\pi,\pi]$ je hladké. Potom pro každé $a\in\mathbb{R}$ je
+    \[ F_f(a) = f(a). \]
+    Spojitá a hladká funkce se tedy rovná součtu své Fourierovy řady.
+\end{consequence}
+
+\subsection{Basilejský problém}
+
+\begin{example}[Basilejský problém]
+    \LARGE
+    TODO
+\end{example}
+
+\subsection{Divergentní řady}
+
+Řadě $\sum a_n$, to jest posloupnosti $(a_n)\subset \mathbb{R}$, lze přiřadit její \uv{součet} i mnoha jinými způsoby,
+než jen jako limitu \[ \lim s_n = \lim (a_1 + \dots + a_n) \] posloupnosti částečných součtů.
+Jako ilustrace jsou uvedeny dvě sumační metody.
+
+\begin{fact}[Abelovský součet]
+    \[\lim_{x\to 1^-} \sum_{n=0}^{\infty} a_nx^n = s \Rightarrow \sum_{n=0}^{\infty} a_n \hspace{1mm} \text{\uv{=}} \hspace{1mm} s. \]
+\end{fact}
+
+\begin{fact}[Cesàrovský součet]
+    \[ \lim_{n\to \infty} \frac{s_1 + s_2 + \dots + s_n}{n} = s \Rightarrow \sum_{n=0}^{\infty} a_n \hspace{1mm} \text{\uv{=}} \hspace{1mm} s \]
+\end{fact}
+
+% TODO: Add examples
+
+\subsection{Absolutně konvergentní řady}
+
+\begin{definition}[Absolutní konvergence]
+    Řekneme, že řada $\sum a_n = \sum_{n=1}^{\infty} a_n$ absolutně konverguje(je to absolutně konvergentní řada), pokud konverguje
+    řada $\sum \abs{a_n} = \sum_{n=1}^{\infty} \abs{a_n}$ tedy
+    \[ \sum_{n=1}^{\infty} \abs{a_n} < +\infty. \]
+\end{definition}
+
+\begin{definition}[Obecná absolutní konvergence]
+    Nechť $A$ je nekonečná spočetná množina.\\ Pak řadou $\sum_{x\in A} a_x$(na $A$) budeme rozumět každou funkci $a:A\to \mathbb{R}$,
+    kde pro $x \in A$ místo $a(x)$ stále píšeme $a_x$. Řekneme, že tato řada je obecná absolutně konvergentní řada, když
+    \[ \exists c>0 \hspace{1mm} \forall \hspace{1mm} \text{konečnou množinu} \hspace{1mm} B \subset A: \sum_{x\in B}\abs{a_x} < c \]
+\end{definition}
+
+\begin{theorem}[O absolutně konvergentních řadách]
+    Nechť $\sum_{x\in A} a_x$ je řada an $A$. Pak $\sum_{x\in A}a_x$ je obecná absolutně konvergentní řada, právě když
+    pro libovolnou bijekci $\pi:\mathbb{N}\to A$ je klasická řada
+    \[ B(\pi) = \sum_{n=1}^{\infty}b(\pi)_n = \sum_{n=1}^{\infty}b_n, \hspace{3mm} b := a_{\pi(n)}, \]
+    absolutně konvergentní řada. Všechny řady $B(\pi)$ jsou pak absolutně konvergentní a mají týž součet, nezávislý na bijekci $\pi$.
+\end{theorem}
+
+\begin{definition}[Součet obecné absolutně konvergentní řady]
+    Pro obecnou absolutně konvergentní řadu $\sum_{x\in A}a_x$ tak definujeme její součet jako součet $\sum b_n$ řady $\sum b_n$ s $b_n := a_{\pi(n)}$
+    pro libovolnou bijekci $\pi:\mathbb{N}\to A$.
+\end{definition}
+
+\begin{definition}[Součin řad]
+    Buďte $\sum_{x\in A} a_x$ a $\sum_{x\in B} b_x$ dvě obecné řady. Jejich součin, či součinová řada,
+    je řada \[ \sum_{(a,b)\in A\times B} a_xb_x. \]
+\end{definition}
+
+\begin{theorem}[Součin absolutně konvergentních řad]
+    Nechť $\sum_{x\in A} a_x$ a $\sum_{x\in B} b_x$ jsou obecné absolutně konvergentní řady se součty
+    \[ r := \sum_{x\in A} a_x \in \mathbb{R} \hspace{3mm} a \hspace{3mm} \sum_{y\in B} b_y \in \mathbb{R}. \]
+    Pak i jejich součin je obecná absolutně konvergentní řada, která má součet $rs$.
+\end{theorem}
+
+\begin{lemma}[Exponenciála]
+    Pro $x\in \mathbb{R}$ nechť \[ \exp(x) := \sum_{n=0}^{\infty} \frac{x^n}{n!} = 1 + x + \frac{x^2}{2} + \frac{x^3}{6} + \frac{x^4}{24} + \dots \]
+    Pak pro každé $x,y \in \mathbb{R}$ platí identita \[ \exp(x+y) = \exp(x)\exp(y). \]
+\end{lemma}
+
+\begin{lemma}[Prvočísel je $\infty$ mnoho]
+    Množina prvočísel
+    \[ \mathbb{P} := \{ 2,3,5,7,11,13,17,19,23, \dots \} \]
+    je nekonečná.
+\end{lemma}
+
 \subsection{Mocninné řady}
 \subsection{Funkční řady}
 \subsection{Konvergence a operace s řadami}
-\subsection{Fourierovy řady}
 
 \end{document}
