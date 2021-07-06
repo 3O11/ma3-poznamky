@@ -1,0 +1,438 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document}
+
+\section{Metrické prostory}
+
+\subsection{Definice}
+
+\begin{definition}[Metrický prostor]
+    Metrický prostor je dvojice $(M,d)$ množiny $M\neq \emptyset$ a zobrazení \[d: M \times M \to \mathbb{R}\]
+    zvaného \underline{metrika} či \underline{vzdálenost}, které $\forall x,y,z \in M$ splňuje:
+    \begin{enumerate}
+        \item $d(x,y) = 0 \iff x=y$
+        \item $d(x,y) = d(y,x)$
+        \item $d(x,y) \leq d(x,z) + d(z,y)$
+    \end{enumerate}
+    Z těchto podmínek plyne i $d(x,y) \geq 0$.
+\end{definition}
+
+\begin{definition}[Podprostor]
+    Každá podmnožina $X \subset M$ určuje nový metrický prostor $(X,d')$, tak zvaný podprostor
+    metrického prostoru $(M,d)$. Pro $x,y \in X$ klademe $d'(x,y) := d(x,y)$.
+    Obě metriky označíme stejným symbolem a máme $(X,d)$.
+\end{definition}
+
+\begin{definition}[Izometrie]
+    Izometrie $f$ dvou metrických prostorů $(M,d)$ a $(N,e)$ je bijekce $f: M\to N$, jež zachovává vzdálenosti:
+    \[ \forall x,y \in M: d(x,y) = e(f(x), f(y)) \]
+    Existuje-li $f$, prostory $M$ a $N$ jsou \underline{izometrické}. Znamená to, že jsou fakticky nerozlišitelné.
+\end{definition}
+
+\subsection{Euklidovský prostor, Sférická metrika}
+
+\begin{example}[Euklidovský prostor]
+    Euklidovský prostor $(\mathbb{R}^n, e_n), n \in \mathbb{N}$, s metrikou $e_n$ danou pro
+    $\overline{x}, \overline{y}\footnote{$\overline{x} = (x_1,\dots , x_n), \overline{y} = (y_1,\dots , y_n)$} \in \mathbb{R}^n$ formulí
+    \[ e_n(\overline{x}, \overline{y}) := \sqrt{\sum_{i=1}^{n} (x_i - y_i)^2} \]
+    Geometricky je $e_n$ délka úsečky určené body $\overline{x}$ a $\overline{y}$. Euklidovským prostorem pak
+    rozumíme obecněji každý podprostor $(X, e_n)$, když $X \subset \mathbb{R}^n$.
+\end{example}
+
+\begin{example}[Sférická metrika]
+    Jako \[S := \{ (x_1,x_2,x_3) \in \mathbb{R}^3 \mid x_1^2 + x_2^2 + x_3^3 = 1 \}\] si označíme \underline{jednotkovou sféru} v
+    euklidovském prostoru $\mathbb{R}^n$. Funkci $s: S\times S \to [0,\pi]$ definujeme pro $\overline{x}, \overline{y} \in S$
+    jako \[ s(\overline{x}, \overline{y}) = \begin{cases}
+        0 \dots \overline{x} = \overline{y}\\
+        \varphi \dots \overline{x} \neq \overline{y}
+    \end{cases} \]
+    kde $\varphi$ je úhel sevřený dvěma polopřimkami procházejícímí počátkem $\overline{0}$ a body $\overline{x}$ a $\overline{y}$.
+    Tento úhel je vlastně délka kratšího z oblouků mezi body $\overline{x}$ a $\overline{y}$ na jednotkové kružnici vytknuté na $S$ rovinou určenou
+    počátkem a body $\overline{x}$ a $\overline{y}$. Funkci $s$ nazveme sférickou metrikou.
+\end{example}
+
+\begin{lemma}
+    $(S,s)$ je metrický prostor.
+\end{lemma}
+
+\begin{definition}[(Horní) hemisféra]
+    (Horní) hemisféra $H$ je množina \[ H := \{ (x_1,x_2,x_3) \in S \mid x_3 \geq 0 \} \subset S \]
+\end{definition}
+
+\begin{theorem}[$H$ není plochá]
+    Metrický prostor $(H,s)$ není izometrický žádnému Euklidovskému prostoru $(X,e_n)$ s $X \subset \mathbb{R}^n$    
+\end{theorem}
+\begin{proof}
+    \LARGE
+    \textbf{TODO}
+\end{proof}
+
+\begin{definition}[Ultrametrika]
+    Metrika $d$ v metrickém prostoru $(M,d)$ je ultrametrika(nearchimédovká metrika),
+    pokud splňuje \underline{silnou trojúhelníkovou nerovnost}
+    \[ \forall x,y,z \in M: d(x,y) \leq \max(d(x,z), d(z,y)) \]
+    Protože $\max(d(x,z), d(z,y)) \leq d(x,z) + d(z,y)$, je každá ultrametrika metrika.
+    V ultrametrických prostorech nefunguje intuice založená na Euklidovských prostorech.
+\end{definition}
+
+\begin{lemma}[Trojúhelníky v ultrametrickém prostoru]
+    V ultrametrickém prostoru $(M,d)$ je každý trojúhelník rovnoramenný, to jest má dvě stejně dlouhé strany.
+\end{lemma}
+
+\begin{definition}[Otevřená koule]
+    (Otevřená) koule v metrickém prostoru $(M,d)$ se středem v $a \in M$ a poloměrem $r > 0$ je podmnožina
+    \[ B(a,r) := \{ x \in M \mid d(x,a) < r \} \subset M \]
+    Vždy $B(a,r) \neq \emptyset$, protože $a \in B(a,r)$.
+\end{definition}
+
+\subsection{$p$-adické metriky}
+
+\begin{definition}[$p$-adický řád]
+    Nechť $p \in \{ 2,3,5,7,11,\dots \}$ je prvočíslo a nechť $n \in \mathbb{Z}$ je nenulové celé číslo.
+    Jako $p$-adický řád čísla $n$ definujeme
+    \[ \text{ord}_p(n) := \max(\{ m \in \mathbb{N}_0 : p^m \mid n \})\footnote{$\cdot \mid \cdot$ značí relaci dělitelnosti.} \]
+    Dále ještě $\forall p$ definujeme $\text{ord}_p(0) := +\infty$.
+\end{definition}
+
+\begin{remark}[Rozšíření $\text{ord}_p(\cdot)$ na zlomky]
+    Pro nenulové $\alpha = \frac{a}{b} \in \mathbb{Q}$ definujeme
+    \[ \text{ord}_p(\alpha) := \text{ord}_p(a) - \text{ord}_p(b) \]
+    Jinak opět $\text{ord}_p(0) = \text{ord}_p(\frac{0}{b}) := +\infty$.
+\end{remark}
+
+\begin{lemma}[aditivita $\text{ord}_p(\cdot)$]
+    Platí, že \[ \forall \alpha,\beta \in \mathbb{Q}: \text{ord}_p(\alpha\beta) = \text{ord}_p(\alpha) + \text{ord}_p(\beta) \]
+    kde $(+\infty) + (+\infty) = (+\infty) + n = n + (\infty) := +\infty$, pro každé $n \in \mathbb{Z}$.
+\end{lemma}
+
+\begin{definition}[$p$-adická norma]
+    Fixujeme reálnou konstantu $c \in (0,1)$ a definujeme funkci $\lvert \cdot \rvert_p : \mathbb{Q} \to [0, +\infty)$ jako
+    \[ \left| \frac{a}{b} \right|_p := c^{\text{ord}_p\left( \frac{a}{b} \right)} \]
+    kde klademe $\lvert 0 \rvert_p = c^{+\infty} := 0$
+\end{definition}
+
+\begin{lemma}[multiplikativita $\mid \cdot \mid_p$]
+    Pro každé $p$ a každé dva zlomky $\alpha,\beta$(a každé $c \in (0,1)$) je \[\lvert \alpha\beta \rvert_p = \lvert \alpha \rvert_p \lvert \beta \rvert_p\]
+\end{lemma}
+
+\begin{definition}[Normované těleso]
+    Normované těleso $F = (F, 0_F, 1_F, +_F, \cdot_F, \lvert \cdot \rvert_F)$, psáno zkráceně
+    $(F, \abs{\cdot}_F)$, je těleso vybavené normou $\lvert \cdot \rvert_p : \mathbb{Q} \to [0, +\infty)$,
+    jež splňuje tři následující požadavky
+    \begin{enumerate}
+        \item $\forall x \in F: \abs{x}_F = 0 \iff x = 0_F$
+        \item $\forall x,y \in F: \abs{x \cdot_F y}_F = \abs{x}_F \cdot \abs{y}_F$
+        \item $\forall x,y \in F: \abs{x +_F y} \leq \abs{x}_F + \abs{y}_F$
+    \end{enumerate}
+\end{definition}
+
+\begin{lemma}
+    Pro každé normované těleso $(F,\abs{\cdot}_F)$ je funkce $d(x,y) := \abs{x-y}_F$ metrika na $F$.
+    Pokud $\abs{\cdot}_F$ splňuje silnou trojúhelníkovou nerovnost, pak je $d$ ultrametrika.
+\end{lemma}
+
+\begin{lemma}[o $| \cdot |_p$]
+    Pro každé prvočíslo $p$ a každé $c \in (0,1)$ je $\mathbb{Q}, \abs{\cdot}_p$ normované těleso.
+    Příslušný metrický prostor $(\mathbb{Q}, d)$(s $d(x,y) := \abs{x-y}_F$) je ultrametrický prostor.
+\end{lemma}
+
+\begin{definition}[Triviální norma]
+    Triviální norma na libovolném tělese $F$ je funkce $|| \cdot ||$ s $||0_F|| = 0$ a $||x|| = 1$ pro $x \neq 0_F$.
+\end{definition}
+
+\begin{lemma}[Mocnění obvyklé absolutní hodnoty]
+    Pro $c > 0$ je $\mid \cdot \mid^c$ norma(na $\mathbb{Q}, \mathbb{R}$ a $\mathbb{C}$), právě když $c \leq 1$.
+\end{lemma}
+
+\begin{definition}[Kanonická $p$-adická norma]
+    Pro $\alpha \in\mathbb{Q}$ a prvočíslo $p$ je kanonická $p$-adická norma $|| \cdot ||_p$ definovaná jako
+    \[|| \alpha ||_p := p^{-\text{ord}_p(\alpha)}\]
+    to jest v obecné $p$-adické normě $|| \cdot ||_p$ klademe $c := \frac{1}{p}$.
+\end{definition}
+
+\begin{theorem}[A. Ostrowski]
+    Nechť $||\cdot||$ je norma na tělese racionálních čísel $\mathbb{Q}$. Pak nastává jedna ze tří následujících možností.
+    \begin{enumerate}
+        \item Je to triviální norma.
+        \item Existuje reálné $c\in (0,1]$ takové, že $||x|| = |x|^c$.
+        \item Existuje reálné $c \in (0,1)$ a prvočíslo $p$, že $||x|| = |x|_p = c^{\text{ord}_p(x)}$(kde $c^\infty := 0$).
+    \end{enumerate}
+    Modifikovaná absolutní hodnota a $p$-adické normy jsou tedy jediné netriviální
+    normy na tělese racionálních čísel.
+\end{theorem}
+\begin{proof}
+    \LARGE
+    \textbf{TODO}
+\end{proof}
+
+\subsection{Kompaktnost množin v metrických prostorech}
+
+\begin{remark}[Konvence]
+    $\varepsilon > 0$ a $\delta > 0$ jsou reálná čísla a $n,n_0 \in \mathbb{N}$. Limitu píšeme jako
+    $\lim a_n = a$ nebo $\lim_{n \to \infty} a_n = a$.
+\end{remark}
+
+\begin{definition}[Limita]
+    Nechť je $(M,d)$ metrický prostor, $(a_n) \subset M$ je posloupnost bodů v něm a $a \in M$ je bod.
+    $(a_n)$ má limitu v $(M,d)$, pokud
+    \[ \forall \varepsilon \exists n_0: n \geq n_0 \Rightarrow d(a_n, a) < \varepsilon \].
+\end{definition}
+
+\begin{definition}[Konvergence, Divergence]
+    Pokud má $(a_n)$ limitu, řekneme, že je konvergentní. Pokud limitu nemá, je divergentní.
+\end{definition}
+
+\begin{definition}[Kompaktní metrický prostor]
+    Buď $(M,d)$ metrický prostor a $X \subset M$. Řekneme, že $X$ je kompaktní, pokud
+    \[ \forall (a_n) \subset X  \exists (a_{m_n})  \exists a \in X: \lim_{n \to \infty } a_{m_n} = a. \]
+    Jinak řečeno, každá posloupnost bodů množiny $X$ má konvergentní podposloupnost s limitou v $X$.
+    Metrický prostor $(M,d)$ je kompaktní, pokud $M$ je kompaktní.
+\end{definition}
+
+\begin{definition}[Spojité zobrazení mezi Metrickými prostory]
+    Buďte $(M,d)$ a $(N,e)$ metrické prostory a buď $f: M \to N$ zobrazení mezi nimi. $f$ je spojité v
+    $a \in M$, pokud
+    \[ \forall \varepsilon \exists \delta \forall x \in M: d(x,a) < \delta \Rightarrow e(f(x), f(a)) < \varepsilon \]
+    Zobrazení $f$ je spojité, pokud je spojité v každém bodě $a \in M$.
+\end{definition}
+
+\begin{theorem}[Princip maxima]
+    Nechť $(M,d)$ je metrický prostor, \[ f: M \to \mathbb{R} \] je funkce z $M$ do reálné osy a
+    $X \subset M$ je neprázdná kompaktní množina. Pak
+    \[ \exists a,b \in X \forall x \in X: f(a) \leq f(x) \leq f(b) \]
+    Funkce $f$ tedy na $X$ nabývá svou nejmenší hodnotu $f(a)$ a největší hodnotu $f(b)$.
+\end{theorem}
+
+\begin{definition}[Součin metrických prostorů]
+    Pro metrické prostory $(M,d)$ a $(N,e)$ definujeme jejich součin $(M \times N, d \times e)$ tak,
+    že $M \times N$ je kartézský součin množin $M$ a $N$ a metrika $d \times e$ je na něm dána jako
+    \[ (d \times e)((a_1, a_2), (b_1, b_2)) := \sqrt{d(a_1, b_1)^2 + e(a_2, b_2)^2} \]
+\end{definition}
+
+\begin{definition}[Otevřená množina]
+    Množina $X \in M$ v metrickém prostoru $(M,d)$ je otevřená, pokud
+    \[ \forall a \in X \exists r > 0: B(a,r) \subset X. \]
+\end{definition}
+
+\begin{definition}[Uzavřená množina]
+    \vspace{3mm}
+    \noindent
+    Množina $X$ je uzavřená, pokud $M \backslash X$ je otevřená.
+\end{definition}
+
+\begin{definition}[Omezená množina]
+    \vspace{3mm}
+    \noindent
+    Množina $X$ je omezená, pokud
+    \[ \exists a \in M  \exists r > 0 : X \subset B(a,r) \]
+\end{definition}
+
+\begin{definition}[Diametr]
+    Diametr(průměr) množiny $X$ je s $V := \{ d(a,b) | a,b \in X \} \subset [0, +\infty)$
+    definovaný jako
+    \[ \text{diam}(X) := \begin{cases}
+        \sup (V) &\dots \hspace{2mm} \text{množina} \hspace{0.5mm} V \text{je shora omezená}\\
+        +\infty &\dots \hspace{2mm} \text{množina} \hspace{0.5mm} V \text{není shora omezená}
+    \end{cases} \]
+\end{definition}
+
+\begin{theorem}[Kompaktní $\Rightarrow$ uzavřená a omezená, součin]
+    Platí následující:
+    \begin{enumerate}
+        \item Když $X \subset M$ je kompaktní množina v metrickém prostoru $(M,d)$, pak $X$
+        je uzavřená a omezená. Opačná implikace obecně neplatí.
+        \item Jsou-li $(M,d)$ a $(N,e)$ dva kompaktní metrické prostory, pak i jejich součin
+        $(M \times N, d \times e)$ je kompaktní metrický prostor.
+    \end{enumerate}
+\end{theorem}
+
+\begin{theorem}[Kompaktní množina v $\mathbb{R}^n$]
+    V každém Euklidovském metrickém prostoru $(\mathbb{R}^n, e_n)$ je množina $X \subset \mathbb{R}^n$
+    kompaktní, právě když je omezená a uzavřená.
+\end{theorem}
+
+\subsection{Topologická spojitost}
+
+\begin{lemma}[Topologická spojitost]
+    Nechť $f: M \to N$ je zobrazení mezi metrickými prostory $(M,d)$ a $(N,e)$. prostorem
+    \[ f \hspace{1mm} \text{je spojité} \iff \forall \hspace{1mm} \text{OM} \hspace{1mm} A \subset N: f^{-1}[A] = \{ x\in M \mid f(x) \in A \} \subset M \hspace{1mm} \text{je OM}.
+    \footnote{OM zkracuje sousloví \uv{otevřená množina}. } \]
+\end{lemma}
+
+\noindent
+Toto tvrzení platí i pro uzavřené množiny.
+
+\begin{lemma}[Topologická spojitost pro podprostory]
+    Nechť $(M,d)$ a $(N,e)$ jsou metrické prostory, $X \subset M$ je neprázdná množina a $f:X \to N$. prostorem
+    \[ f \hspace{1mm} \text{je spojité zobrazení definované na} \hspace{1mm} (X,d)
+    \iff \forall \hspace{1mm} \text{OM} \hspace{1mm} A \subset N: \exists \hspace{1mm} \text{OM} \hspace{1mm} B \subset M: f^{-1}[A] = X \cap B. \]
+\end{lemma}
+
+\noindent
+Topologickou definici spojitosti jsme rozšířili na podprostory.
+
+\begin{lemma}[Spojitý obraz kompaktu]
+    Nechť $(M,d)$ a $(N,e)$ jsou metrické prostory, $X\subset M$ je neprázdná kompaktní množina a \[ f: X\to N \] je spojitá funkce.
+    Pak obraz $f[X] \subset N$ je kompaktní množina.
+\end{lemma}
+
+\begin{lemma}[Spojitost inverzu]
+    Nechť $f: X\to N$ je spojité zobrazení z neprázdné kompaktní množiny $X \subset M$ v metrickém prostoru $(M,d)$ do $(N,e)$.
+    Potom inverzní zobrazení \[ f^{-1}: f[X] \to X \] je spojité.
+\end{lemma}
+
+\begin{definition}[Homeomorfismus]
+    Zobrazení $f: M\to N$ mezi metrickými prostory $(M,d)$ a $(N,e)$ je jejich homeomorfismus, je-li $f$ bijekce a jsou-li $f$ a $f^{-1}$ spojitá zobrazení.
+    Pokud mezi $(M,d)$ a $(N,e)$ existuje homeomorfismus, jsou \underline{homeomorfní}.
+\end{definition}
+
+\subsection{Heine-Borelova věta}
+
+\begin{definition}[Topologická kompaktnost]
+    Podmnožina $A\subset M$ metrického prostoru $(M,d)$ je topologicky kompaktní, pokud každý systém otevřených množin $\{ X_i \mid i \in I \}$ v $M$ platí:
+    \[ \bigcup_{i \in I} X_i \supset A \Rightarrow \exists \hspace{1mm} \text{konečná množina} \hspace{1mm} J \subset I: \bigcup_{i\in J}X_i \supset A. \]
+\end{definition}
+
+\begin{theorem}[Heine-Borelova]
+    Podmnožina $A\subset M$ metrického prostoru $(M,d)$ je kompaktní, právě když je topologicky kompaktní.
+\end{theorem}
+\begin{proof}
+    \LARGE
+    \textbf{TODO}
+\end{proof}
+
+\subsection{Souvislé množiny a metrické prostory}
+
+\begin{definition}[Obojetná množina]
+    Podmnožina $X \subset M$ v metrickém prostoru $(M,d)$ je obojetná\footnote{anglicky \textit{clopen}}, je-li současně
+    otevřená i uzavřená, jako jsou například množiny $\emptyset$ a $M$.
+\end{definition}
+
+\begin{definition}[Souvislý prostor]
+    Prostor $(M,d)$ je souvislý, pokud v něm neexistuje netriviální\footnote{Různou od $M$ a $\emptyset$.} obojetná podmnožina.
+    Jinak, má-li $M$ obojetnou podmnožinu $X \subset M$ s $X \neq \emptyset$, je nesouvislý.
+\end{definition}
+
+\begin{definition}[Souvislá podmnožina]
+    Podmnožina $X\subset M$ je souvislá, je-li podprostor $(X,d)$ souvislý.
+    Pokud podprostor $(X,d)$ souvislý není, je nesouvislá.
+\end{definition}
+
+\begin{definition}[Trhání množiny]
+    Nechť $(M,d)$ je metrický prostor a $X,A,B \subset M$. Řekneme, že množiny $A$ a $B$ \underline{trhají množinu} $X$, pokud
+    $A$ a $B$ jsou otevřené a platí všechna následující 
+    \begin{itemize}
+        \item $X \subset A \cup B$
+        \item $X \cap A \neq \emptyset \neq X \cap B$
+        \item $(X \cap A) \cap (X \cap B) = \emptyset$
+    \end{itemize}
+\end{definition}
+
+\begin{lemma}
+    Podmnožina $X \subset M$ je nesouvislá množina v metrickém prostoru $(M,d)$, přávě
+    když existují $A,B \subset M$, které ji trhají.
+\end{lemma}
+
+\subsection{Základní věta algebry}
+
+\begin{theorem}[Základní věta algebry]
+    Každý nekonstantní komplexní polynom má kořen, tedy
+    \[ (n\in \mathbb{N})\land (a_0, a_1, \dots, a_n \in \mathbb{C}) \land (a_n \neq 0) \Rightarrow \exists \alpha \in \mathbb{C}: \sum_{j=0}^{n}a_j\alpha^j = 0 \]
+\end{theorem}
+
+\begin{theorem}[Souvislost intervalů]
+    Každý interval $[a,b] \subset \mathbb{C}$, kde $a,b \in \mathbb{R}$ a $a \leq b$, je souvislá množina.
+\end{theorem}
+
+\begin{theorem}[souvislost a spojitost]
+    Nechť $f:X\to N$ je spojité zobrazení ze souvislé množiny $X\subset M$ v metrickém prostoru $(M,d)$ do
+    metrického prostoru $(N,e)$. Potom
+    \[ f[X] = \{ f(x) \mid x\in N \} \subset N \]
+    je souvislá množina.
+\end{theorem}
+
+\begin{remark}
+    Komplexní jednotková kružnice \[ S := \{ z \in \mathbb{C} \mid \abs{z} = 1 \} \subset \mathbb{C} \]
+    je souvislá množina.
+\end{remark}
+
+\begin{lemma}
+    Pro každé nezáporné $x \in \mathbb{R}$ a každé $n \in \mathbb{N}$ existuje nezáporné $y\in \mathbb{R}$ takové, že $y^n = x$.
+\end{lemma}
+
+\begin{lemma}[Druhá odmocnina v $\mathbb{C}$]
+    $\forall a+bi \in \mathbb{C}$ máme pro vhodnou volbu znamének v reálných číslech
+    \[ c := \pm \frac{\sqrt{\sqrt{a^2 + b^2} + a}}{\sqrt{2}} \hspace{5mm} a \hspace{5mm} d := \pm \frac{\sqrt{\sqrt{a^2 + b^2} - a}}{\sqrt{2}}, \]
+    že $(c+di)^2 = a+bi$.
+\end{lemma}
+
+Z předchozích dvou tvrzení lze dokázat, že pokud pro každé $u \in S$ a pro každé liché $ n \in\mathbb{N}$ $\exists v \in S: v^n = u$, pak
+platí následující věta.
+
+\begin{theorem}[$n$-té odmocniny v $\mathbb{C}$]
+    Komplexní čísla obsahují všechny $n$-té odmocniny, tedy
+    \[ \forall u \in \mathbb{C} \hspace{1mm} \forall n \in \mathbb{N} \hspace{1mm} \exists v \in \mathbb{C}: v^n = u. \]
+\end{theorem}
+\begin{proof}
+    \LARGE
+    TODO
+\end{proof}
+
+\begin{lemma}[Redukce na $n$-té odmocniny]
+    Když $\mathbb{C}$ obsahuje všechny $n$-té odmocniny, pak platí Základní věta algebry a každý nekonstantní
+    komplexní polynom má kořen.
+\end{lemma}
+
+\subsection{Úplné množiny a metrické prostory}
+
+\begin{definition}[Cauchyova posloupnost]
+    Cauchyova posloupnost $(a_n)$ splňuje, že
+    \[ \forall \varepsilon \hspace{1mm} \exists n_0: m,n \geq n_0 \Rightarrow d(a_m,a_n) < \varepsilon \]
+\end{definition}
+
+\begin{definition}[Úplný metrický prostor]
+    Metrický prostor $(M,d)$ je úplný, je-li každá Cauchyovská posloupnost $(a_n) \subset M$ konvergentní.
+\end{definition}
+
+\begin{definition}[Úplná množina]
+    Množina $X \subset M$ je úplná, je-li podprostor $(X,d)$ úplný.
+\end{definition}
+
+\begin{lemma}[úplnost uzavřených podprostorů]
+    V úplném metrickém prostoru $(M,d)$ je každá uzavřená množina $X \subset M$ úplná.
+\end{lemma}
+
+\subsection{Baireova věta}
+
+\begin{definition}[Řídká a hustá množina]
+    Množina $X \subset M$ v metrickém prostoru $(M,d)$ je řídká(v $M$), pokud
+    \[ \forall a \in M \hspace{1mm} \forall r > 0 \hspace{1mm} \exists b \in M \hspace{1mm} \exists s > 0: B(b,s) \subset B(a,r) \land B(b,s) \cap X = \emptyset \]
+    Každá koule v $(M,d)$ tedy obsahuje podkouli disjunktní s $X$.
+    Podobně množina $Y \subset M$ v metrickém prostoru $(M,d)$ je hustá(v $M$), pokud
+    \[ \forall a \in M \hspace{1mm} \forall r > 0: B(a,r) \cap Y \neq \emptyset \]
+\end{definition}
+
+\begin{lemma}[hustota a spojitost]
+    Nechť $(M,d)$ a $(N,e)$ jsou metrické prostory, $X \subset M$ je hustá v $M$ a
+    \[ f,g: M\to N \]
+    jsou taková spojitá zobrazení, že $f|X = g|X$\footnote{Zúžení obou funkcí na množinu $X$ se shodují.} Potom $f=g$.
+\end{lemma}
+
+\begin{definition}[Uzavřená koule]
+    Pro $a \in M$ a reálné $r > 0$ rozumíme v metrickém prostoru $(M,d)$ uzavřenou koulí $\overline{B}(a,r)$ množinu
+    \[ \overline{B}(a,r) := \{ x \in M \mid d(a,x) \leq r \}.\]
+\end{definition}
+
+\noindent
+Uzavřená koule je uzavřená množina a pro každé $a\in M$ a kladná čísla $r,s \in \mathbb{R}$ t.ž. $r<s$ je $\overline{B}(a,r) \subset B(a,s)$.
+
+\begin{theorem}[Baireova]
+    Nechť $(M,d)$ je úplný metrický prostor a \[ M = \bigcup_{n=1}^{\infty} X_n. \]
+    Pak některá množina $X_n$ není řídká.
+\end{theorem}
+
+\begin{consequence}[o úplném metrickém prostoru]
+    Každý úplný metrický prostor $(M,d)$, který neobsahuje izolované body, je nespočetný.
+\end{consequence}
+
+\end{document}

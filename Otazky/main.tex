@@ -1,0 +1,107 @@
+\documentclass[11pt]{article}
+
+\usepackage[czech]{babel}
+\usepackage{a4wide}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{fancyhdr}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{mleftright}
+\usepackage{subfig}
+
+% forcing footnotes to be at the very bottom
+\usepackage[bottom]{footmisc}
+
+\usepackage{hyperref}
+\usepackage{titlesec}
+%This has to be the last
+\usepackage{subfiles}
+
+\usepackage{geometry}
+\geometry{
+    a4paper,
+    total={170mm,257mm},
+    right=20mm,
+    left=20mm,
+    top=30mm,
+    bottom=20mm,
+}
+
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\Span}{span}
+
+\newtheoremstyle{nontheoremstyle}{1em}{1em}{}{}{\bfseries}{:}{.5em}{}
+\newtheoremstyle{theoremstyle}{1em}{1em}{\it}{}{\bfseries}{:}{.5em}{}
+
+\theoremstyle{nontheoremstyle}
+\newtheorem*{definition}{Definice}
+\newtheorem*{example}{Příklad}
+\renewenvironment{proof}{{\noindent\bfseries Důkaz:}}{\qed}
+\newtheorem*{intuition}{Intuice}
+\newtheorem*{remark}{Poznámka}
+\newtheorem*{consequence}{Důsledek}
+\newtheorem*{observation}{Pozorování}
+
+% ošklivý hack k tomu, aby environment 'definitionnodot' neměl na konci . nebo :
+% hodí se, když chceme Dělat něco jako „Definice (Riemannův integrál) je funkce...“
+\newtheoremstyle{nontheoremstylenodot}{1em}{1em}{}{}{\bfseries}{}{.3em}{}
+\theoremstyle{nontheoremstylenodot}
+\newtheorem*{definitionnodot}{Definice}
+
+\theoremstyle{theoremstyle}
+\newtheorem*{theorem}{Věta}
+\newtheorem*{lemma}{Tvrzení}
+
+\titleformat{\section} {\normalfont\fontsize{16}{15}\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection} {\normalfont\fontsize{14}{15}\bfseries}{\thesubsection}{1em}{}
+\titleformat{\subsubsection} {\normalfont\fontsize{12}{15}\bfseries}{\thesubsubsection}{1em}{}
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Matematická analýza III}
+\lhead{Otázky na Letní semestr 2020/2021}
+\fancyfoot{}
+\fancyfoot[R]{\thepage}
+
+\begin{document}
+
+\begin{enumerate}
+    \item {
+        Definujte metrický prostor a sférickou metriku. Dokažte, že hemisféra není plochá.
+    }
+    \item {
+        Dokažte Ostrowskiho větu.
+    }
+    \item {
+        Dokažte Heine-Borelovu větu.
+    }
+    \item {
+        Dokažte existenci $n$-tých odmocnin v $\mathbb{C}$.
+    }
+    \item {
+        Dokažte Besselovu nerovnost.
+    }
+    \item {
+        Spočítejte, že $ \sum_{n=1}^{\infty} \frac{1}{n^2} = \frac{\pi^2}{6} $
+    }
+    \item {
+        Dokažte, že stejnoměrná limita spojitých funkcí je spojitá funkce.
+    }
+    \item {
+        Dokažte případ 2 nebo případ 3 Pólyovy věty.
+    }
+    \item {
+        Dokažte, že $\rho \neq 0$.
+    }
+    \item {
+        Dokažte Caychy-Goursatovu větu pro obdélníky.
+    }
+    \item {
+        Vyřešte diferenciální rovnici $y' + ay = b$.
+    }
+\end{enumerate}
+
+\end{document}

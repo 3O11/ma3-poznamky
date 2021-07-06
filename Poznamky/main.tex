@@ -45,6 +45,17 @@
 \newtheorem*{consequence}{Důsledek}
 \newtheorem*{observation}{Pozorování}
 
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}%
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}%
+
+\makeatletter
+\let\oldabs\abs
+\def\abs{\@ifstar{\oldabs}{\oldabs*}}
+
+\let\oldnorm\norm
+\def\norm{\@ifstar{\oldnorm}{\oldnorm*}}
+\makeatother
+
 % ošklivý hack k tomu, aby environment 'definitionnodot' neměl na konci . nebo :
 % hodí se, když chceme Dělat něco jako „Definice (Riemannův integrál) je funkce...“
 \newtheoremstyle{nontheoremstylenodot}{1em}{1em}{}{}{\bfseries}{}{.3em}{}
@@ -92,16 +103,36 @@
         \vfill
         \flushright
         \normalsize
-        Verze 0.0\\
+        Verze 0.3\\
         \today
         
     \end{center}
 \end{titlepage}
 
+Tyto poznámky jsem sepsal pro přípravu na zkoušku z přednášek pana doc. Klazara.
+Neprošly zatím žádnou korekcí, budou tedy pravděpodobně obsahovat mnoho chyb.
+Pokud v poznámkách najdete chybu, nebo pokud budete mít nějakou připomínku k tomu,
+jak jsou psané, kontaktujte mě prosím na Discordu, nebo mi dejte pull-request na
+\url{https://github.com/3O11/ma3-poznamky}. Ke většině vět jsem vynechal důkazy,
+psal jsem je téměř výhradně k větám/tvrzením, která spadají k otázkám vypsaným ke zkoušce.
+\clearpage
+
 \tableofcontents
 \clearpage
 
 \subfile{Chapters/01-MetrickeProstory.tex}
+\subfile{Chapters/02-Rady.tex}
+
+% Temporary, until the appropriate files get created
+\section{Komplexní analýza}
+\subsection{Holomorfní funkce}
+\subsection{Póly funkcí}
+\subsection{Aplikace}
+
+\section{Úvod do diferenciálních rovnic}
+\subsection{Rovnice se separovanýmí proměnými}
+\subsection{Lineární rovnice}
+\subsection{Věta o existenci}
 
 \vfill
 \begin{center}
