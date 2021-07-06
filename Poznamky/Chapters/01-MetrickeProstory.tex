@@ -42,7 +42,7 @@
         0 \dots \overline{x} = \overline{y}\\
         \varphi \dots \overline{x} \neq \overline{y}
     \end{cases} \]
-    kde $\varphi$ je úhel sevřený dvěma přimkami procházejícímí počátkem $\overline{0}$ a body $\overline{x}$ a $\overline{y}$.
+    kde $\varphi$ je úhel sevřený dvěma polopřimkami procházejícímí počátkem $\overline{0}$ a body $\overline{x}$ a $\overline{y}$.
     Tento úhel je vlastně délka kratšího z oblouků mezi body $\overline{x}$ a $\overline{y}$ na jednotkové kružnici vytknuté na $S$ rovinou určenou
     počátkem a body $\overline{x}$ a $\overline{y}$. Funkci $s$ nazveme sférickou metrikou.
 \end{example}
@@ -77,11 +77,55 @@
     Vždy $B(a,r) \neq \emptyset$, protože $a \in B(a,r)$.
 \end{definition}
 
-\noindent
-$p$-adické metriky jsem prozatím vynechal.
+\subsection{$p$-adické metriky}
 
-% Konec prvni prednasky
+\begin{definition}[$p$-adický řád]
+    Nechť $p \in \{ 2,3,5,7,11,\dots \}$ je prvočíslo a nechť $n \in \mathbb{Z}$ je nenulové celé číslo.
+    Jako $p$-adický řád čísla $n$ definujeme
+    \[ \text{ord}_p(n) := \max(\{ m \in \mathbb{N}_0 : p^m \mid n \})\footnote{$\cdot \mid \cdot$ značí relaci dělitelnosti.} \]
+    Dále ještě $\forall p$ definujeme $\text{ord}_p(0) := +\infty$.
+\end{definition}
 
+\begin{remark}[Rozšíření $\text{ord}_p(\cdot)$ na zlomky]
+    Pro nenulové $\alpha = \frac{a}{b} \in \mathbb{Q}$ definujeme
+    \[ \text{ord}_p(\alpha) := \text{ord}_p(a) - \text{ord}_p(b) \]
+    Jinak opět $\text{ord}_p(0) = \text{ord}_p(\frac{0}{b}) := +\infty$.
+\end{remark}
 
+\begin{lemma}[aditivita $\text{ord}_p(\cdot)$]
+    Platí, že \[ \forall \alpha,\beta \in \mathbb{Q}: \text{ord}_p(\alpha\beta) = \text{ord}_p(\alpha) + \text{ord}_p(\beta) \]
+    kde $(+\infty) + (+\infty) = (+\infty) + n = n + (\infty) := +\infty$, pro každé $n \in \mathbb{Z}$.
+\end{lemma}
+
+\begin{definition}[$p$-adická norma]
+    Fixujeme reálnou konstantu $c \in (0,1)$ a definujeme funkci $\lvert \cdot \rvert_p : \mathbb{Q} \to [0, +\infty)$ jako
+    \[ \left| \frac{a}{b} \right|_p := c^{\text{ord}_p\left( \frac{a}{b} \right)} \]
+    kde klademe $\lvert 0 \rvert_p = c^{+\infty} := 0$
+\end{definition}
+
+\begin{lemma}[multiplikativita $\mid \cdot \mid_p$]
+    Pro každé $p$ a každé dva zlomky $\alpha,\beta$(a každé $c \in (0,1)$) je \[\lvert \alpha\beta \rvert_p = \lvert \alpha \rvert_p \lvert \beta \rvert_p\]
+\end{lemma}
+
+\begin{definition}[Normované těleso]
+    Normované těleso $F = (F, 0_F, 1_F, +_F, \cdot_F, \lvert \cdot \rvert_F)$, psáno zkráceně
+    $(F, \abs{\cdot}_F)$, je těleso vybavené normou $\lvert \cdot \rvert_p : \mathbb{Q} \to [0, +\infty)$,
+    jež splňuje tři následující požadavky
+    \begin{enumerate}
+        \item $\forall x \in F: \abs{x}_F = 0 \iff x = 0_F$
+        \item $\forall x,y \in F: \abs{x \cdot_F y}_F = \abs{x}_F \cdot \abs{y}_F$
+        \item $\forall x,y \in F: \abs{x +_F y} \leq \abs{x}_F + \abs{y}_F$
+    \end{enumerate}
+\end{definition}
+
+\begin{lemma}
+    Pro každé normované těleso $(F,\abs{\cdot}_F)$ je funkce $d(x,y) := \abs{x-y}_F$ metrika na $F$.
+    Pokud $\abs{\cdot}_F$ splňuje silnou trojúhelníkovou nerovnost, pak je $d$ ultrametrika.
+\end{lemma}
+
+\begin{lemma}[o $\mid \cdot \mid_p$]
+    Pro každé prvočíslo $p$ a každé $c \in (0,1)$ je $\mathbb{Q}, \abs{\cdot}_p$ normované těleso.
+    Příslušný metrický prostor $(\mathbb{Q}, d)$(s $d(x,y) := \abs{x-y}_F$) je ultrametrický prostor.
+\end{lemma}
 
 \end{document}

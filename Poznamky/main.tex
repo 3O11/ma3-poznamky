@@ -45,6 +45,17 @@
 \newtheorem*{consequence}{Důsledek}
 \newtheorem*{observation}{Pozorování}
 
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}%
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}%
+
+\makeatletter
+\let\oldabs\abs
+\def\abs{\@ifstar{\oldabs}{\oldabs*}}
+
+\let\oldnorm\norm
+\def\norm{\@ifstar{\oldnorm}{\oldnorm*}}
+\makeatother
+
 % ošklivý hack k tomu, aby environment 'definitionnodot' neměl na konci . nebo :
 % hodí se, když chceme Dělat něco jako „Definice (Riemannův integrál) je funkce...“
 \newtheoremstyle{nontheoremstylenodot}{1em}{1em}{}{}{\bfseries}{}{.3em}{}
