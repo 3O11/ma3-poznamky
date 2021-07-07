@@ -11,6 +11,7 @@
 \usepackage{mathtools}
 \usepackage{mleftright}
 \usepackage{subfig}
+\usepackage{xcolor}
 
 % forcing footnotes to be at the very bottom
 \usepackage[bottom]{footmisc}
@@ -44,7 +45,9 @@
 \newtheorem*{remark}{Poznámka}
 \newtheorem*{consequence}{Důsledek}
 \newtheorem*{observation}{Pozorování}
+\newtheorem*{fact}{Fakt}
 
+% Absolutni hodnota a norma
 \DeclarePairedDelimiter\abs{\lvert}{\rvert}%
 \DeclarePairedDelimiter\norm{\lVert}{\rVert}%
 
@@ -55,6 +58,9 @@
 \let\oldnorm\norm
 \def\norm{\@ifstar{\oldnorm}{\oldnorm*}}
 \makeatother
+
+% Lokalne stejnomerna konvergence
+\newcommand\locconv{\stackrel{\mathclap{\normalfont\mbox{\text{\scriptsize loc}}}}{\rightrightarrows}}
 
 % ošklivý hack k tomu, aby environment 'definitionnodot' neměl na konci . nebo :
 % hodí se, když chceme Dělat něco jako „Definice (Riemannův integrál) je funkce...“
