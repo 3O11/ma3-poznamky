@@ -400,8 +400,74 @@ která leží v definičním oboru funkce $f$ se svým celým vnitřkem, je 0.
     Definice funkcionálu $\int$ je korektní, jeho hodnota $\int f$ nezávisí na volbě obdélníku $R$.
 \end{lemma}
 
-\subsection{Póly funkcí}
-\subsection{Aplikace}
+\begin{theorem}[Vlastnosti $\int$]
+    Důležité vlastnosti jsou tři.
+    \begin{enumerate}
+        \item Linearita: pro každé $\alpha,\beta \in \mathbb{C}$ a $f,g \in H$ je
+        \[ \int(\alpha f + \beta g) = \alpha \int f + \beta \int g \]
+        \item Rozšíření Cauchy-Goursatovy věty: když $a\in\mathbb{C}$ a funkce
+        $f \in H_{\{a\}}$ je omezená na nějakém prstencovém okolí bodu $a$, pak
+        \[ \int f = 0. \]
+        \item Pro každé $a\in\mathbb{C}$ je
+        \[ \int \frac{1}{z-a} = \rho \]
+        kde $\rho = 2\pi i$ je dříve zavedená konstanta.
+    \end{enumerate}
+\end{theorem}
 
+% It might be worth it to add this proof?
+
+\begin{theorem}[Cauchyův vzorec]
+    Nechť $f:\mathbb{C}\to\mathbb{C}$ je celá funkce. Pak je-li $\rho = 2\pi i$
+    dříve definovaná konstanta, pro každé $a\in\mathbb{C}$ je
+    \[ f(a) = \frac{1}{\rho}\int \frac{f(z)}{z-a}. \]
+\end{theorem}
+
+\subsubsection{Meromorfní funkce a rezidua}
+
+\begin{definition}[Diskrétní množina]
+    Množina $A\subset \mathbb{C}$ je diskrétní, pokud v každé
+    kouli $B(z,r)\subset \mathbb{C}$ leží jen konečně mnoho jejích prvků.
+\end{definition}
+
+\begin{definition}[Meromorfní funkce, množina pólů]
+    Holomorfní funkci \[ f: U\backslash A \to \mathbb{C}, \]
+    kde $A\subset \mathbb{C}$ je diskrétní, nazveme \underline{meromorfní funkcí} a
+    $A$ nazveme \underline{množinou jejích pólů}, když každý bod 
+    $a \in A$ má okolí $U_a \subset U$ s $U_a \cap A = \{a\}$, že pro
+    nějakou holomorfní funkci $g_a:U_a \to \mathbb{C}$ a nějaká
+    čísla $k_a \in \mathbb{N}_0$ a $c_{j,a} \in\mathbb{C}, j = 1,2,\dots,k_a$ že pro každé
+    $z \in U_a\backslash \{a\}$ je
+    \[ f(z) = g_a(z) + \sum_{j=1}^{k_a} \frac{c_{j,a}}{(z-a)^j}. \]
+    Pro $k_a = 0$ se suma definuje jako 0 a $f = g_a$ pak je holomorfní na $U_a$.
+\end{definition}
+
+\begin{definition}[Reziduum funkce $f$]
+    Koeficient $c_{1,a}$ z předchozí definice je takzvané reziduum funkce $f$ v bodě $a$,
+    označované jako \[ \text{res}(f,a) := c_{1,a}. \]
+    Z Cauchyova vzorce plyne, že res($f,a$) je jednoznačně určené funkcí $f$.
+\end{definition}
+
+\begin{theorem}[Reziduová]
+    Nechť $f:U\backslash A\to\mathbb{C}$ je meromorfní funkce s množinou pólů $A$ a $R\subset U$ je obdélník,
+    jehož hranice neobsauje žádný bod z $A$. Potom platí rovnost
+    \[ \frac{1}{2\pi i}\int_{\partial R}f = \sum_{a\in A\cap\text{int}(R)} \text{res}(f,a) = \sum_{a\in A\cap R} \text{res}(f,a) \]
+    (suma v ní je konečná). Integrál funkce $f$ přes hranici obdélníka $R$, dělený $2\pi i$, se tedy rovná součtu reziduí funkce $f$ v pólech ležících
+    uvnitř $R$.
+\end{theorem}
+
+\begin{lemma}[O funkci $F(z)$]
+    Nechť \[ F(z) := \frac{2\pi i}{e^{2\pi iz} - 1}: \mathbb{C} \backslash \mathbb{Z} \to \mathbb{C}. \]
+    Funkce $F$ je meromorfní s póly v $\mathbb{Z}$ a v každém čísle má reziduum rovné 1.
+\end{lemma}
+
+\noindent
+{\textbf{Lemma:}}
+\textit{ Nechť $F(z)$ je jako v předešlém tvrzení a $S_N \subset \mathbb{C}$, $N\in\mathbb{N}$, je čtverec
+s vrcholy $(N + \frac{1}{2})(\pm 1\pm i)$. Pak existuje konstanta $c>0$, že \[ \forall N \in \mathbb{N} \, \forall z \in \partial S_N: \abs{F(z)} \leq c. \] }
+
+\begin{theorem}[Sečtení řady $\sum n^{-2k}$]
+    Pro každé $k \in \mathbb{N}$ existuje kladný zlomek $\alpha_k \in \mathbb{Q}$, že
+    \[ \zeta(2k) = 1 + \frac{1}{2^{2k}} + \frac{1}{3^{2k}} + \frac{1}{4^{2k}} + \dots = \alpha_k\pi^{2k}. \]
+\end{theorem}
 
 \end{document}
