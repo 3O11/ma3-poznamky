@@ -68,40 +68,205 @@
 
 \begin{document}
 
-\begin{enumerate}
-    \item {
-        Definujte metrický prostor a sférickou metriku. Dokažte, že hemisféra není plochá.
-    }
-    \item {
-        Dokažte Ostrowskiho větu.
-    }
-    \item {
-        Dokažte Heine-Borelovu větu.
-    }
-    \item {
-        Dokažte existenci $n$-tých odmocnin v $\mathbb{C}$.
-    }
-    \item {
-        Dokažte Besselovu nerovnost.
-    }
-    \item {
-        Spočítejte, že $ \sum_{n=1}^{\infty} \frac{1}{n^2} = \frac{\pi^2}{6} $
-    }
-    \item {
-        Dokažte, že stejnoměrná limita spojitých funkcí je spojitá funkce.
-    }
-    \item {
-        Dokažte případ 2 nebo případ 3 Pólyovy věty.
-    }
-    \item {
-        Dokažte, že $\rho \neq 0$.
-    }
-    \item {
-        Dokažte Caychy-Goursatovu větu pro obdélníky.
-    }
-    \item {
-        Vyřešte diferenciální rovnici $y' + ay = b$.
-    }
-\end{enumerate}
+\section{Definujte metrický prostor a sférickou metriku. Dokažte, že hemisféra není plochá.}
+
+\begin{definition}[Metrický prostor]
+    Metrický prostor je dvojice $(M,d)$ množiny $M\neq \emptyset$ a zobrazení \[d: M \times M \to \mathbb{R}\]
+    zvaného \underline{metrika} či \underline{vzdálenost}, které $\forall x,y,z \in M$ splňuje:
+    \begin{enumerate}
+        \item $d(x,y) = 0 \iff x=y$
+        \item $d(x,y) = d(y,x)$
+        \item $d(x,y) \leq d(x,z) + d(z,y)$
+    \end{enumerate}
+    Z těchto podmínek plyne i $d(x,y) \geq 0$.
+\end{definition}
+
+\begin{example}[Sférická metrika]
+    Jako \[S := \{ (x_1,x_2,x_3) \in \mathbb{R}^3 \mid x_1^2 + x_2^2 + x_3^3 = 1 \}\] si označíme \underline{jednotkovou sféru} v
+    euklidovském prostoru $\mathbb{R}^n$. Funkci $s: S\times S \to [0,\pi]$ definujeme pro $\overline{x}, \overline{y} \in S$
+    jako \[ s(\overline{x}, \overline{y}) = \begin{cases}
+        0 \dots \overline{x} = \overline{y}\\
+        \varphi \dots \overline{x} \neq \overline{y}
+    \end{cases} \]
+    kde $\varphi$ je úhel sevřený dvěma polopřimkami procházejícímí počátkem $\overline{0}$ a body $\overline{x}$ a $\overline{y}$.
+    Tento úhel je vlastně délka kratšího z oblouků mezi body $\overline{x}$ a $\overline{y}$ na jednotkové kružnici vytknuté na $S$ rovinou určenou
+    počátkem a body $\overline{x}$ a $\overline{y}$. Funkci $s$ nazveme sférickou metrikou.
+\end{example}
+
+\begin{theorem}[$H$ není plochá]
+    Metrický prostor $(H,s)$ není izometrický žádnému Euklidovskému prostoru $(X,e_n)$ s $X \subset \mathbb{R}^n$    
+\end{theorem}
+\begin{proof}
+    \LARGE
+    \textbf{TODO}
+\end{proof}
+
+\section{Dokažte Ostrowskiho větu.}
+
+\begin{definition}[$p$-adický řád]
+    Nechť $p \in \{ 2,3,5,7,11,\dots \}$ je prvočíslo a nechť $n \in \mathbb{Z}$ je nenulové celé číslo.
+    Jako $p$-adický řád čísla $n$ definujeme
+    \[ \text{ord}_p(n) := \max(\{ m \in \mathbb{N}_0 : p^m \mid n \})\footnote{$\cdot \mid \cdot$ značí relaci dělitelnosti.} \]
+    Dále ještě $\forall p$ definujeme $\text{ord}_p(0) := +\infty$.
+\end{definition}
+
+\begin{remark}[Rozšíření $\text{ord}_p(\cdot)$ na zlomky]
+    Pro nenulové $\alpha = \frac{a}{b} \in \mathbb{Q}$ definujeme
+    \[ \text{ord}_p(\alpha) := \text{ord}_p(a) - \text{ord}_p(b) \]
+    Jinak opět $\text{ord}_p(0) = \text{ord}_p(\frac{0}{b}) := +\infty$.
+\end{remark}
+
+\begin{definition}[$p$-adická norma]
+    Fixujeme reálnou konstantu $c \in (0,1)$ a definujeme funkci $\lvert \cdot \rvert_p : \mathbb{Q} \to [0, +\infty)$ jako
+    \[ \left| \frac{a}{b} \right|_p := c^{\text{ord}_p\left( \frac{a}{b} \right)} \]
+    kde klademe $\lvert 0 \rvert_p = c^{+\infty} := 0$
+\end{definition}
+
+\begin{definition}[Kanonická $p$-adická norma]
+    Pro $\alpha \in\mathbb{Q}$ a prvočíslo $p$ je kanonická $p$-adická norma $|| \cdot ||_p$ definovaná jako
+    \[|| \alpha ||_p := p^{-\text{ord}_p(\alpha)}\]
+    to jest v obecné $p$-adické normě $|| \cdot ||_p$ klademe $c := \frac{1}{p}$.
+\end{definition}
+
+\begin{theorem}[A. Ostrowski]
+    Nechť $||\cdot||$ je norma na tělese racionálních čísel $\mathbb{Q}$. Pak nastává jedna ze tří následujících možností.
+    \begin{enumerate}
+        \item Je to triviální norma.
+        \item Existuje reálné $c\in (0,1]$ takové, že $||x|| = |x|^c$.
+        \item Existuje reálné $c \in (0,1)$ a prvočíslo $p$, že $||x|| = |x|_p = c^{\text{ord}_p(x)}$(kde $c^\infty := 0$).
+    \end{enumerate}
+    Modifikovaná absolutní hodnota a $p$-adické normy jsou tedy jediné netriviální
+    normy na tělese racionálních čísel.
+\end{theorem}
+\begin{proof}
+    \LARGE
+    \textbf{TODO}
+\end{proof}
+
+\section{Dokažte Heine-Borelovu větu.}
+
+\begin{lemma}[Topologická spojitost]
+    Nechť $f: M \to N$ je zobrazení mezi metrickými prostory $(M,d)$ a $(N,e)$. prostorem
+    \[ f \hspace{1mm} \text{je spojité} \iff \forall \hspace{1mm} \text{OM} \hspace{1mm} A \subset N: f^{-1}[A] = \{ x\in M \mid f(x) \in A \} \subset M \hspace{1mm} \text{je OM}.
+    \footnote{OM zkracuje sousloví \uv{otevřená množina}. } \]
+\end{lemma}
+
+\noindent
+Toto tvrzení platí i pro uzavřené množiny.
+
+\begin{lemma}[Spojitý obraz kompaktu]
+    Nechť $(M,d)$ a $(N,e)$ jsou metrické prostory, $X\subset M$ je neprázdná kompaktní množina a \[ f: X\to N \] je spojitá funkce.
+    Pak obraz $f[X] \subset N$ je kompaktní množina.
+\end{lemma}
+
+\begin{lemma}[Spojitost inverzu]
+    Nechť $f: X\to N$ je spojité zobrazení z neprázdné kompaktní množiny $X \subset M$ v metrickém prostoru $(M,d)$ do $(N,e)$.
+    Potom inverzní zobrazení \[ f^{-1}: f[X] \to X \] je spojité.
+\end{lemma}
+
+\begin{definition}[Homeomorfismus]
+    Zobrazení $f: M\to N$ mezi metrickými prostory $(M,d)$ a $(N,e)$ je jejich homeomorfismus, je-li $f$ bijekce a jsou-li $f$ a $f^{-1}$ spojitá zobrazení.
+    Pokud mezi $(M,d)$ a $(N,e)$ existuje homeomorfismus, jsou \underline{homeomorfní}.
+\end{definition}
+
+\begin{definition}[Topologická kompaktnost]
+    Podmnožina $A\subset M$ metrického prostoru $(M,d)$ je topologicky kompaktní, pokud každý systém otevřených množin $\{ X_i \mid i \in I \}$ v $M$ platí:
+    \[ \bigcup_{i \in I} X_i \supset A \Rightarrow \exists \hspace{1mm} \text{konečná množina} \hspace{1mm} J \subset I: \bigcup_{i\in J}X_i \supset A. \]
+\end{definition}
+
+\begin{theorem}[Heine-Borelova]
+    Podmnožina $A\subset M$ metrického prostoru $(M,d)$ je kompaktní, právě když je topologicky kompaktní.
+\end{theorem}
+\begin{proof}
+    \LARGE
+    \textbf{TODO}
+\end{proof}
+
+\section{Dokažte existenci $n$-tých odmocnin v $\mathbb{C}$.}
+
+\begin{remark}
+    Komplexní jednotková kružnice \[ S := \{ z \in \mathbb{C} \mid |z| = 1 \} \subset \mathbb{C} \]
+    je souvislá množina.
+\end{remark}
+
+\begin{lemma}
+    Pro každé nezáporné $x \in \mathbb{R}$ a každé $n \in \mathbb{N}$ existuje nezáporné $y\in \mathbb{R}$ takové, že $y^n = x$.
+\end{lemma}
+
+\begin{lemma}[Druhá odmocnina v $\mathbb{C}$]
+    $\forall a+bi \in \mathbb{C}$ máme pro vhodnou volbu znamének v reálných číslech
+    \[ c := \pm \frac{\sqrt{\sqrt{a^2 + b^2} + a}}{\sqrt{2}} \hspace{5mm} a \hspace{5mm} d := \pm \frac{\sqrt{\sqrt{a^2 + b^2} - a}}{\sqrt{2}}, \]
+    že $(c+di)^2 = a+bi$.
+\end{lemma}
+
+Z předchozích dvou tvrzení lze dokázat, že pokud pro každé $u \in S$ a pro každé liché $ n \in\mathbb{N}$ $\exists v \in S: v^n = u$, pak
+platí následující věta.
+
+\begin{theorem}[$n$-té odmocniny v $\mathbb{C}$]
+    Komplexní čísla obsahují všechny $n$-té odmocniny, tedy
+    \[ \forall u \in \mathbb{C} \hspace{1mm} \forall n \in \mathbb{N} \hspace{1mm} \exists v \in \mathbb{C}: v^n = u. \]
+\end{theorem}
+\begin{proof}
+    \LARGE
+    \textbf{TODO}
+\end{proof}
+
+\section{Dokažte Besselovu nerovnost.}
+
+\begin{lemma}[Ortogonalita sinů a cosinů]
+    Pro každá dvě celá čísla $m,n\geq 0$ je \[ \left< \sin(mx),\cos(nx) \right> = 0. \]
+    Pro každá dvě delá čísla $m,n\geq 0$, kromě $m=n=0$, je
+    \[ \left< \sin(mx), \sin(nx) \right> = \left< \cos(mx), \cos(nx) \right> =
+    \begin{cases} \pi \hspace{2mm} \dots \hspace{2mm} m=n\\ 0 \hspace{2mm} \dots \hspace{2mm} m\neq n. \end{cases} \]
+    Konečně
+    \[ \left< \sin(0x), \sin(0x) \right> = 0 \hspace{5mm} a \hspace{5mm} \left< \cos(0x), \cos(0x) \right> = 2\pi. \]
+\end{lemma}
+
+\begin{definition}[Kosinové a sinové Fourierovy koeficienty]
+    Pro každou funkci $f \in \mathcal{R}(-\pi,\pi)$ definujeme její
+    \underline{kosinové} Fourierovy koeficienty
+    \[ a_n := \frac{\left< f(x), \cos(nx) \right>}{\pi} = \frac{1}{\pi}\int_{-\pi}^{\pi}f(x)\cos(nx)\,\text{dx}, n = 0,1,\dots \]
+    a \underline{sinové} Fourierovy koeficienty
+    \[ b_n := \frac{\left< f(x), \sin(nx) \right>}{\pi} = \frac{1}{\pi}\int_{-\pi}^{\pi}f(x)\sin(nx)\,\text{dx}, n = 1,2,\dots \]
+\end{definition}
+
+\begin{definition}[Fourierova řada funkce]
+    Fourierova řada funkce $f$($\in \mathcal{R}(-\pi,\pi)$) je trigonometrická řada
+    \[ F_f(x) := \frac{a_0}{2} + \sum_{n=1}^{\infty} \left( a_n \cos(nx) + b_n \sin(nx) \right), \]
+    kde $a_n$ a $b_n$ jsou po řadě její kosinové a sinové Fourierovy koeficienty.
+\end{definition}
+
+\noindent
+Geometricky nahlíženo, pracujeme v nekonečně rozměrném vektorovém prostoru se (skoro) skalárním součinem $\left<\cdot,\cdot\right>$,
+v němž jsou \uv{souřadnými osami}(prvky ortogonální báze) funkce
+\[ \{ \cos(nx) \mid n\in \mathbb{N}_0 \} \cup \{ \cos(nx) \mid n\in \mathbb{N} \} \]
+V kontrastu s kartézskými souřadnicemi bodů v $\mathbb{R}^n$ se ale zdaleka ne každá funkce rovná součtu
+své Fourierovy řady.
+
+\begin{theorem}[Besselova nerovnost]
+    Pro Fourierovy koeficienty $a_n$ a $b_n$ funkce $f \in \mathcal{R}(-\pi,\pi)$ platí nerovnost
+    \[ \frac{a_0^2}{2} + \sum_{n=1}^{\infty}(a_n^2+b_n^2) \leq \frac{\left<f,f\right>}{\pi} = \frac{1}{\pi}\int_{-\pi}^{\pi}f^2. \]
+\end{theorem}
+\begin{proof}
+    \LARGE
+    \textbf{TODO}
+\end{proof}
+
+\section{Spočítejte, že $ \sum_{n=1}^{\infty} \frac{1}{n^2} = \frac{\pi^2}{6} $}
+
+\begin{example}[Basilejský problém]
+    \LARGE
+    TODO
+\end{example}
+
+\section{Dokažte, že stejnoměrná limita spojitých funkcí je spojitá funkce.}
+
+
+
+\section{Dokažte případ 2 nebo případ 3 Pólyovy věty.}
+\section{Dokažte, že $\rho \neq 0$.}
+\section{Dokažte Caychy-Goursatovu větu pro obdélníky.}
+\section{Vyřešte diferenciální rovnici $y' + ay = b$.}
+
 
 \end{document}
