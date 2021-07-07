@@ -1,0 +1,407 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document}
+    
+\section{Komplexní analýza}
+
+\begin{definition}[Komplexní čísla]
+    Komplexní čísla
+    \[ \mathbb{C} = \{ z = a+bi \mid a,b\in\mathbb{R} \}, \hspace{3mm} i = \sqrt{-1}, \]
+    tvoří normované těleso $\mathbb{C}, 0,1,+,\cdot,\abs{\dots}$,
+    s normou $\abs{z} = \abs{a+bi} := \sqrt{a^2 + b^2}$.
+    Zároveň tvoří úplný metrický prostor $(\mathbb{C}, d)$ s metrikou $d(z_1,z_2) := \abs{z_1 - z_2}$,
+    který je izometrický klasické euklidovkské rovině $\mathbb{R}^2$.
+\end{definition}
+
+\begin{remark}[Značení]
+    \[ \text{re}(a+bi) := a \hspace{3mm} \text{a} \hspace{3mm} \text{im}(a+bi) := b \]
+\end{remark}
+
+\begin{definition}[Komplexní koule]
+    Jako $B(z,r) = \{ u \in \mathbb{C} \mid \abs{u-z} < r \}$ označíme kouli se středem $z$
+    a poloměrem $r > 0$.
+\end{definition}
+
+\subsection{Holomorfní a analytické funkce}
+
+\begin{definition}[Derivace]
+    Pro funkci $f:U\to\mathbb{C}$ a bod $z_0 \in U$ je její derivace $f'(z_0)$ v $z_0$ definovaná jako
+    pro reálné funkce:
+    \[ f'(z_0) := \lim_{z\to z_0} \frac{f(z) - f(z_0)}{z-z_0} \in \mathbb{C}, \]
+    pokud tato limita existuje. Explicitně, $f'(z_0) \in \mathbb{C}$ je derivace funkce $f$
+    v bodě $z_0$, právě když
+    \[ \forall \varepsilon > 0 \hspace{1mm} \exists \delta > 0: z \in U \land 0 < \abs{z-z_0} < \delta \Rightarrow
+    \left| \frac{f(z) - f(z_0)}{z-z_0} = f'(z_0) \right| < \varepsilon. \]
+\end{definition}
+
+\begin{definition}[Holomorfní funkce]
+    Funkce $f: U\to \mathbb{C}$ je holomorfní(na $U$), má-li v každém bodě
+    $z_0 \in U$ derivaci.
+    \underline{Celá} či \underline{celistvá} funkce $f: \mathbb{C}\to \mathbb{C}$
+    je lohomorfní na celé komplexní rovině $\mathbb{C}$.
+    Komplexní derivace má stejné algebraické vlastnosti jako derivace reálná.
+\end{definition}
+
+\begin{lemma}[Vlastnosti derivace]
+    $f,g: U\to \mathbb{C}$ a $h: U_0\to \mathbb{C}$
+    buďte holomorfní funkce a $\alpha,\beta \in \mathbb{C}$.
+    Platí následující.
+    \begin{enumerate}
+        \item Funkce $\alpha f + \beta g$ je holomorfní na $U$ a $(\alpha f + \beta g)' = \alpha f' + \beta g'$.
+        \item Součin $fg$ je holomorfní na $U$ a $(fg)' = f'g + fg'$.
+        \item Když $g \neq 0$ na $U$, pak je podíl $\frac{f}{g}$ holomorfní na $U$ a $\left( \frac{f}{g} \right)' = \frac{f'g - fg'}{g^2}$.
+        \item Když $h[U_0] \subset U$, pak je složená funkce $f(h): U_0 \to \mathbb{C}$ holomorfní na $U_0$ a $(f(h))' = f'(h)h'$.
+    \end{enumerate}
+\end{lemma}
+
+\begin{remark}[K derivacím]
+    Jako pro reálné funkce, pro $n \in \mathbb{N}$ na $\mathbb{C}$ máme $(z^n)' = nz^{n-1}$,
+    derivace konstantní funkce je nulová funkce a každá racionální funkce je holomorfní na svém definičním oboru
+    a její derivace je táž jako v reálném případě(tj. je daná stejnou formulí).
+\end{remark}
+
+\begin{definition}[Analytická funkce]
+    Funkce $f:U\to\mathbb{C}$ je analytická (na $U$), pokud pro každý bod
+    $z_0 \in U$ existují taková komplexní čísla $a_0,a_1,\dots$, že
+    \[ z \in U \land B(z_0, \abs{z-z_0}) \subset U \Rightarrow f(z) = \sum_{n=0}^{\infty} a_n(z-z_0)^n \]
+    Analytická funkce je v každém kruhu se středem $z_0$, který je obsažený v definičním oboru,
+    vyjádřena mocninnou řadou s komplexními koeficienty a středem $z_0$.
+    S mocninnými řadami s komplexními koeficienty počítáme úplně stejně jako s reálnými mocninnými řadami.
+\end{definition}
+
+\subsubsection{Odlišnosti reálné a komplexní analýzy}
+
+\noindent
+\textbf{1. Odlišnost}
+
+\begin{theorem}[Holomorfní $\Rightarrow$ analytická]
+    Je-li $f:\mathbb{C}\to\mathbb{C}$ celá funkce, pak existují komplexní
+    koeficienty $a_0,a_1,\dots$, že pro každé $z\in\mathbb{C}$ je
+    \[ f(z) = \sum_{n=0}^{\infty} a_nz^n. \]
+\end{theorem}
+
+\noindent
+\textbf{2. Odlišnost}
+
+\begin{remark}
+    Funkce $f:U\to\mathbb{C}$ je omezená, když $ \exists c> 0 \hspace{1mm} \forall c \in U: \abs{f(z)} < c. $
+\end{remark}
+
+\begin{theorem}[Liouville]
+    Když je $f:\mathbb{C}\to\mathbb{C}$ celá a omezená funkce, pak je $f$ konstantní.
+\end{theorem}
+
+\noindent
+\textbf{3. Odlišnost}
+
+\begin{consequence}[Holomorfní funkce má $\forall$ derivace]
+    Každá holomorfní funkce $f:U\to\mathbb{C}$ má derivace $f^{(n)}(z)$ všech řádů $n \in \mathbb{N}$.
+    Speciálně je její derivace $f':U\to\mathbb{C}$ spojitá funkce.
+\end{consequence}
+
+\noindent
+\textbf{4. Odlišnost}
+
+\begin{theorem}[Princip maxima modulu]
+    Nechť $f:U\to\mathbb{C}$ je holomorfní funkce. Pak
+    \[ \forall z_0 \in U \hspace{1mm} \forall \delta > 0 : 0 < \abs{z-z_0} < \delta \land \abs{f(z)} \geq \abs{f(z_0)}. \]
+\end{theorem}
+
+\subsection{Úsečky a obdélníky}
+
+\begin{definition}[Úsečka]
+    Pro dva různé body je úsečka $u = ab \subset \mathbb{C}$ obraz
+    \[ u = ab := \varphi[[0,1]] = \{ \varphi(t)\mid 0\leq t\leq 1 \} \subset \mathbb{C} \]
+    intervalu $[0,1]$ lineární funkcí
+    \[ \varphi(t) := (b-a)t + a: [0,1]\to\mathbb{C}. \]
+\end{definition}
+
+\begin{remark}[Orientace úsečky]
+    Úsečka je orientována pořadím svých konců, takže $ab$ a $ba$ jsou dvě různé úsečky.
+\end{remark}
+
+\begin{definition}[Délka úsečky]
+    \[ \abs{u} = \abs{ab} := \abs{b-a} \geq 0 \]
+\end{definition}
+
+\begin{definition}[Dělení úsečky]
+    Dělení $p$ úsečky $u = ab$ je $k+1$-tice
+    $p = (a_0,a_1,\dots,a_k) \subset u, k\in \mathbb{N}$, jejích bodů
+    \[ a_i := \varphi(t_i), \hspace{3mm} i = 0,1,\dots,k, \]
+    které jsou obrazy bodů $0 = t_0 < t_1 < \dots < t_k = 1$
+    tvořících dělení intervalu $[0,1]$. Takže $a_0 = a, a_k = b$ a body $a_0,a_1,\dots,a_k$ běží
+    na $u$ od $a$ do $b$.
+\end{definition}
+
+\begin{definition}[Norma dělení]
+    Norma $\norm{p}$ dělení $p$ je
+    \[ \norm{p} := \max_{1\leq i \leq k} \abs{a_{i-1}a_i} = \max_{1\leq i\leq k} \abs{a_i - a_{i-1}}, \]
+    tedy největší délka podúsečky dělení.
+\end{definition}
+
+\begin{definition}[Cauchyova suma a její modifikace]
+    Pro funkci $f:U\to\mathbb{C}$ a dělení $p = (a_0,a_1,\dots,a_k)$ úsečky
+    $u$ definujeme Cauchyovu sumu $C(f,p)$ a její modifikaci $C'(f,p)$ jako
+    \begin{align*}
+        C(f,p) :=& \sum_{i=1}^{k}f(a_i)\cdot (a_i - a_{i-1}) \in \mathbb{C}\\
+        C'(f,p) :=& \sum_{i=1}^{k}f(a_{i-1})\cdot (a_i - a_{i-1}) \in \mathbb{C}.
+    \end{align*}
+\end{definition}
+
+\begin{definition}[Obdélník]
+    Obdélník $R \subset \mathbb{C}$ je množina
+    \[ R := \{ z \in \mathbb{C} \mid \alpha \leq \text{re}(z) \leq \beta \land \gamma \leq \text{im}(z) \leq \delta \} \]
+    dána reálnými čísly $\alpha < \beta$ a $\gamma < \delta$. Jeho strany jsou rovnoběžné s reálnou a imaginární osou.
+    Když $\beta - \alpha = \delta - \gamma$, jde o \underline{čtverec}.
+\end{definition}
+
+\begin{definition}[Kanonické vrcholy obdélníka]
+    Kanonické vrcholy obdélníka $R$ jsou $(a,b,c,d)\in\mathbb{C}^4$, kde
+    \[ a := \alpha + \gamma i, b := \beta + \gamma i, c := \beta + \delta i \hspace{2mm} \text{a} \hspace{2mm} d := \alpha + \delta i. \]
+    Začínají levým dolním vrcholem a jdou proti směru hodinových ručiček.
+\end{definition}
+
+\begin{definition}[Hranice obdélníka]
+    Hranice $\partial R$ obdélníka $R$ je sjednocení úseček
+    \[ \partial R := ab \cup bc \cup cd \cup da. \]
+\end{definition}
+
+\begin{definition}[Vnitřek obdélníka]
+    Vnitřek $\text{int}(R)$ obdélníka $R$ je 
+    \[ \text{int}(R) := R\backslash \partial R. \]
+\end{definition}
+
+\begin{definition}[Obvod obdélníka]
+    Obvod $\text{obv}(R)$ obdélníka $R$ je součet délek jeho stran,
+    \[ \text{obv}(R) := \abs{ab} + \abs{bc} + \abs{cd} + \abs{da}. \]
+\end{definition}
+
+\subsection{Integrály}
+
+\begin{definition}[Integrál přes úsečku a hranici obdélníka]
+    Nechť $f:u,\partial R \to \mathbb{C}$ je spojitá funkce
+    definovaná na úsečce $u$ nebo na hranici obdélníka $R$.
+    Definujeme 
+    \[ \underline{\int_{u}f} := \lim_{n\to\infty} C(f,p_n) \in \mathbb{C} \]
+    a
+    \[ \underline{\int_{\partial R}f} := \int_{ab}f + \int_{bc}f + \int_{cd}f + \int_{da}f, \]
+    kde $(p_n)$ je libovolná posloupnost dělení $p_n$ úsečky $u$, která splňuje $\lim \norm{p_n} = 0$, a
+    $(a,b,c,d)$ jsou kanonické vrcholy obdélníka $R$.
+    Hodnota $\int_u f$ je integrál funkce $f$ je funkce přes úsečku $u$ a $\int_{\partial R}f$ je
+    integrál funkce $f$ přes hranici obdélníka $R$.
+\end{definition}
+
+\begin{theorem}[O integrálech]
+    Nechť $u = ab$ je úsečka, $R$ je obdélník a funkce $f,g:u,\partial R \to \mathbb{C}$ jsou spojité.
+    Limita definující $\int_u f$ vždy existuje a nezávisí na posloupnosti $(p_n)$.
+    Tedy i $\int_{\partial R}f$ je vždy dobře definovaný. Oba integrály
+    mají následující vlastnosti.
+    \begin{enumerate}
+        \item Pro každé $\alpha,\beta \in \mathbb{C}$ je $\int_u(\alpha f + \beta g) = \alpha \int_u f + \beta \int_u g$ a totéž platí pro $\int_{\partial R}$.
+        \item Platí ML odhady \[ \abs{\int_uf}\leq\max_{z\in u} \abs{f(z)}\cdot\abs{u}
+        \hspace{3mm} \text{a} \hspace{3mm} \abs{\int_{\partial R}f}\leq\max_{z\in \partial R} \abs{f(z)}\cdot\text{obv}(R) \]
+        \item Pro každý vnitřní bod $c$ úsečky $u=ab$, to jest $c \in ab$ a $c \neq a,b$, je $\int_{ab}f = \int_{ac}f + \int_{cb}f$. Též $\int_{ba}f = -\int_{ab}f$.
+    \end{enumerate}
+\end{theorem}
+
+\begin{lemma}[Stejnoměrná spojitost]
+    Nechť $A\subset M$ je kompaktní množina v metrickém prostoru $(M,d)$ a $f:A\to\mathbb{R}$ je spojitá funkce.
+    Pak je $f$ stejnoměrně spojitá, takže
+    \[ \forall \varepsilon > 0 \hspace{1mm} \exists \delta > 0: a,b \in A \land d(a,b) < \delta \Rightarrow \abs{f(a) - f(b)} < \varepsilon. \]
+\end{lemma}
+
+\begin{definition}[$k$-ekvidělení]
+    Pro $k\in\mathbb{N}$ a úsečku $u\subset\mathbb{C}$ jejím $k$-ekvidělením
+    rozumíme dělení $u$ na $k$ podúseček stejné délky $\frac{\abs{u}}{k}$, které je dané
+    obrazy dělení $0 < \frac{1}{k} < \frac{2}{k} < \dots < \frac{k-1}{k} < 1$ jednotkového intervalu.
+\end{definition}
+
+\begin{lemma}
+    Nechť $a,b,\alpha,\beta \in\mathbb{C}$ s $a\neq b$. Platí
+    \[ \int_{ab}(\alpha z + \beta) = \left( \frac{b^2}{2} - \frac{a^2}{2} \right) + \beta (b-a) = g(b) - g(a),\]
+    kde $g(z) := \frac{\alpha z^2}{2} +\beta z$.
+\end{lemma}
+
+\begin{lemma}[Jednoduchá Cauchy-Goursatova věta]
+    Nechť $\alpha,\beta\in\mathbb{C}$ a $R\subset\mathbb{C}$ je obdélník. pak
+    \[ \int_{\partial R}(\alpha z + \beta) = 0. \]
+\end{lemma}
+
+\begin{lemma}[$\int_u$ a $(R)\int$]
+    Nechť $a,b\in\mathbb{C}$ s $a\neq b$, $f:ab\to\mathbb{C}$ je spojitá
+    funkce a $\varphi(t) := t(b-a) +a: [0,1]\to\mathbb{C}$ je parametrizace
+    definující úsečku $u=ab$. Potom
+    \begin{align*}
+        \int_u f &= \int_0^1 f(\varphi(t))\cdot\varphi'(t)\,\text{dt} = (b-a)\int_0^1 f(\varphi(t))\,\text{dt}\\ 
+        &= (b-a)\left( \int_0^1 \text{re}(f(\varphi(t)))\,\text{dt} + i \cdot \int_0^1 \text{im}(f(\varphi(t)))\,\text{dt} \right)
+    \end{align*}
+    (až na první integrál jsou všechny ostatní Riemannovy).
+\end{lemma}
+
+\begin{definition}[Křivkový integrál]
+    Když
+    \begin{center}
+        $f:U\to\mathbb{C}$ je funkce a $\varphi:[a,b]\to U$
+    \end{center}
+    je spojitá a po částech hladká funkce, pak integrál funkce $f$
+    přes křivku $\varphi$ definujeme jako
+    \begin{align*}
+        \int_{\varphi} f :=& \int_a^b f(\varphi(t))\cdot\varphi'(t)\,\text{dt}\\
+        =& \int_a^b \text{re}\left(f\left(\varphi\left(t\right)\right)\cdot\varphi'\left(t\right)\right)\,\text{dt}
+        + i \cdot \int_a^b \text{im}\left(f\left(\varphi\left(t\right)\right)\cdot\varphi'\left(t\right)\right)\,\text{dt},
+    \end{align*}
+    pokud poslední dva (reálné) Riemannovy integrály existují. Náš \uv{úsečkový integrál} $\int_u$ je tedy podle
+    předchozího tvrzení speciálním případem křivkového integrálu $\int_\varphi$.
+\end{definition}
+
+\subsection{Konstanta $\rho = 2\pi i$}
+
+\begin{lemma}
+    Buď dána konvergentní posloupnost komplexních čísel $(z_n)$. Platí $\text{im}(\lim z_n) = \lim \text{im}(z_n)$.
+\end{lemma}
+
+\begin{theorem}[Konstanta $\rho$]
+    Nechť $S$ je čtverec s vrcholy $\pm 1 \pm i$. Pak
+    \[ \rho := \int_{\partial S}\frac{1}{z} \neq 0, \,\, \text{dokonce}\,\, \text{im}(\rho) \geq 4. \]
+\end{theorem}
+\begin{proof}
+    Kanonické vrcholy čtverce $S$ jsou $a:= -1-i,b:=1-i,c:=1+i$ a $d:=-1+i$.
+    Nechť $p_n = (a_0,a_1,\dots,a_n)$ je $n$-ekvidělení úsečky $ab$.
+    Protože násobení číslem $i$ je otočení kolem počátku kladným směrem\footnote{proti směru hodinových ručiček}
+    o úhel $\frac{\pi}{2}$ je $q_n = ip_n := (ia_0,ia_1,\dots,ia_n)$ $n$-ekvidělení úsečky $bc$.
+    Podobně je $r_n = iq_n = -p_n$, resp. $s_n = ir_n = -ip_n$, $n$-ekvidělení úsečky $cd$, resp. $da$.
+    Překvapivě pro $f(z) = \frac{1}{z}$ je
+    \[ C(f,p_n) = C(f,q_n) = C(f,r_n) = C(f,s_n) \]
+    Skutečně, rozšíření zlomku číslem $i$ dává
+    \begin{align*}
+        C(f,p_n) &= \sum_{j=1}^{n}\left( \frac{\frac{b-a}{n}}{a+ \frac{j(b-a)}{n}} \right) = \left( \sum_{j=1}^{n} \frac{\frac{ib-ia}{n}}{ia+ \frac{j(ib-ia)}{n}}\right)\\
+        &= \sum_{j=1}^{n}\left( \frac{\frac{c-b}{n}}{b+ \frac{j(c-b)}{n}}\right) = C(f,q_n)
+    \end{align*}
+    a podobně pro další dvě rovnosti. Dále vzhledem k $b-a = 2$ a $a = -1-i$ rozšířením zlomku číslem $\frac{2j}{n} - 1$ dostáváme
+    \begin{align*}
+        \text{im}(C(f,p_n)) &= \text{im}\left( \sum_{j=1}^{n}\frac{\frac{2}{n}}{-1-i+\frac{2j}{n}} \right)\\
+        &= \text{im}\left(\frac{2}{n} \sum_{j=1}^{n}\frac{\frac{2j}{n} - 1 + i}{\left(\frac{2j}{n} - 1\right)^2 + 1}\right)\\
+        &= \frac{2}{n}\sum_{j=1}^{n}\left(\frac{1}{\left(\frac{2j}{n} - 1\right)^2 + 1}\right) \geq \frac{2}{n}\sum_{j=1}^{n}\frac{1}{2} = 1.
+    \end{align*}
+    Tedy, podle tvrzení výše,
+    \begin{align*}
+        \text{im}(\rho) &= \text{im}\left(\int_{\partial S}\frac{1}{z}\right) = 4 \cdot \text{im}\left(\int_{ab}\frac{1}{z}\right)\\
+        &= 4 \cdot \lim_{n\to\infty}\text{im}\left(C\left( \frac{1}{z},p_n \right)\right)\\
+        &\geq 4\cdot 1 = 4
+    \end{align*}
+    a skutečně $\rho \neq 0$.
+\end{proof}
+
+\begin{lemma}
+    Nechť opět $a:= -1-i$ a $b:= 1-i$.
+    Potom $\int_{ab}\frac{1}{z} = \frac{\pi i}{2}$.
+    Tedy, podle předchozího důkazu, $\rho = 4\cdot\frac{\pi i}{2} = 2\pi i$.\footnote{$\int \frac{1}{1+t^2} = \arctan t$}
+\end{lemma}
+
+\subsection{Cauchy-Goursatova věta}
+
+Integrál $\int_\varphi f$ holomorfní funkce $f$ přes \textit{jednoduchou uzavřenou křivku} $\varphi$,
+která leží v definičním oboru funkce $f$ se svým celým vnitřkem, je 0.
+
+\begin{definition}[Diametr množiny]
+    Pro množinu $x \subset \mathbb{C}$ je její diametr\footnote{průměr}
+    definovaný jako
+    \begin{center}
+        diam$(X)$ = sup($\{ \abs{x-y} \mid x,y\in X \}$).
+    \end{center}
+    Průměr množiny může být i $+\infty$.
+\end{definition}
+
+\begin{lemma}
+    Když $A_n$,
+    \[ \mathbb{C} \supset A_1 \supset A_2 \supset \dots, \]
+    jsou neprázdné a uzavřené množiny s $\lim \text{diam}(A_n) = 0$, pak
+    $\bigcap_{n=1}^{\infty} A_n \neq \emptyset$.
+\end{lemma}
+
+\begin{definition}[Čtvrtka obdélníka]
+    Buď obdélník $R$ s kanonickými vrcholy $(a,b,c,d)$.
+    Když $e:=\frac{a+b}{2},f:=\frac{b+c}{2},g:=\frac{c+d}{2}$ a $h:=\frac{d+a}{2}$
+    jsou středy stran $R$ a $j:=\frac{a+c}{2}$ je jeho celkový střed, pak jeho čtyři
+    čtvrtky jsou obdélníky $A,B,C$ a $D$,
+    jejichž kanonické vrcholy jsou, po řadě,
+    \[ (a,e,j,h), (e,b,f,j), (j,f,c,g) \,\, \text{a}\,\, (h,j,g,d). \]
+    Obdélník se na čtvrtky rozpadne po rozříznutí podle úseček $eg$ a $hf$.
+    Pro každou z těchto čtvrtek $E$ patrně platí: $\text{obv}(E) = \frac{1}{2}\text{obv}(R)$ a $\text{diam}(E) = \frac{1}{2}\text{diam}(R)$.
+\end{definition}
+
+\begin{theorem}[Cauchy-Goursatova pro obdélníky]
+    Nechť \[ f:U\to \mathbb{C} \]
+    je holomorfní funkce a $R\subset U$ je obdélník. Pak
+    \[ \int_{\partial R}f = 0. \]
+\end{theorem}
+\begin{proof}
+    Mějme $f, U$ a $R$. Sestrojíme takové vnořené obdélníky
+    \[ R = R_0 \supset R_1 \supset R_2 \supset \dots, \]
+    že pro každé $n\in\mathbb{N}_0$ je $R_n+1$ čtvrtka obdélníku $R_n$ a
+    \[ \abs{\int_{\partial R_{n+1}}f} \geq \frac{1}{4}\abs{\int_{\partial R_n}f}. \]
+    Nechť už jsou takové obdélníky $R_0,R_1,\dots,R_n$ definované a $A,B,C,D$ jsou čtvrtky 
+    obdélníku $R_n$. Tvrdíme, že
+    \[ \int_{\partial R_n}f = \int_{\partial A}f + \int_{\partial B}f + \int_{\partial C}f + \int_{\partial D}f \]
+    Tato identita plyne použitím třetí části věty o integrálech. Po rozvinutí každého integrálu
+    $\int_{\partial A}f,\dots, \int_{\partial D}f$ jako součtu čtyř integrálů přes strany dostáváme
+    na pravé straně předchozí rovnosti 16 členů. Osm z nich odpovídá stranám čtvrtek uvnitř $R_n$
+    a vzájemně se zruší, protože vytvoří čtyři dvojice opačných orientací stejné úsečky.
+    Zbylých osm členů odpovídá stranám čtvrtek ležících na $\partial R_n$, které se sečtou na integrál na levé
+    straně předcházející rovnosti.
+    Z této rovnosti plyne podle trojúhelníkové nerovnosti, že pro nějakou čtvrtku $E \in \{A,B,C,D\}$
+    je $\abs{\int_{\partial E}f}\geq \frac{1}{4}\abs{\int_{\partial R_n}f}$. Položíme tedy $R_{n+1} = E$.
+
+    Podle předchozího tvrzení existuje bod $z_0$, že
+    \[ z_0 \in \bigcap_{n=0}^{\infty}R_n. \]
+    Protože $R_0 = R \subset U$, je i $z_0 \in U$. Nyní použijeme existenci derivace
+    $f'(z_0)$. Pro dané $\varepsilon > 0$ existuje $\delta > 0$, že $B(z_0,\delta) \subset U$
+    a pro nějakou funkci $\Delta:B(z_0, \delta)\to\mathbb{C}$ pro každé $z \in B(z_0,\delta)$ je $\abs{\Delta(z)} < \varepsilon$
+    a \[ f(z) = \underbrace{f(z_0) + f'(z_0)\cdot(z-z_0)}_{g(z)} + \underbrace{\Delta(z) \cdot(z-z_0)}_{h(z)}. \]
+    Uvážíme tyto funkce $g(z)$ a $h(z)$. Je jasné, že $g(z)$ je lineární a $h(z) = f(z) - g(z)$ je spojitá\footnote{na $B(z_0,\delta)$}.
+    Nechť $n\in\mathbb{N_0}$ je tak velké, že $R_n \subset B(z_0,\delta)$\footnote{potřebujeme jenom, že $\lim \text{diam}(R_n) = 0$, pro esxistenci $z_0$ to není podstatné}.
+    Podle linearity integrálu a jednoduché Cauchyho-Goursatovy věty(JCG) máme
+    \[ \int_{\partial R_n}f = \int_{\partial R_n}g + \int_{\partial R_n}h \stackrel{JCG}{=} \int_{\partial R_n}h. \]
+    Platí odhad
+    \begin{align*}
+        \abs{\int_{\partial R_n} h} &\stackrel{\text{ML odhad}}{\leq} \max_{z\in\partial R_n} \abs{\Delta(z)\cdot(z-z_0)} \cdot \text{obv}(R_n)\\
+        &< \varepsilon \cdot \text{diam}(R_n) \cdot \text{obv}(R_n)\\
+        &= \varepsilon \cdot \frac{\text{diam}(R)}{2^n} \cdot \frac{\text{obv}(R)}{2^n}\\
+        &< \varepsilon \cdot \frac{\text{obv}(R)}{4^n}.
+    \end{align*}
+    Zde jsme použili výše zmíněné zmenšení průměru a obvodu na polovinu po čtvrcení a to, že průměr obdélníka je menší než jeho obvod.
+    Podle předchozích výsledků tak máme
+    \[ \frac{1}{4^n}\abs{\int_{\partial R}f} \leq \abs{\int_{\partial R_n}f} = \abs{\int_{\partial R}h} < \varepsilon \cdot \frac{\text{obv}(R)^2}{4^n} \]
+    a $\abs{\int_{\partial R}f} < \varepsilon \cdot \text{obv}(R)^2$. Protože to platí pro každé $\varepsilon > 0$, je $\int_{\partial R}f = 0$.
+\end{proof}
+
+\begin{theorem}[Cauchy-Goursatova]
+    Nechť $f:U\to\mathbb{C}$ je holomorfní funkce a $\varphi:[a,b]\to U$ je spojitá a po částech hladká fuknce, která je prostá,
+    s vyjímkou hodnoty $\varphi(a) = \varphi(b)$, a jejíž vnitřek\footnote{ta komponenta ve dvojici komponent množiny $\mathbb{C}\backslash\varphi[[a,b]]$,
+    která je omezená} je podmnožinou množiny U. Pak \[ \int_\varphi f= 0. \]
+\end{theorem}
+
+\subsection{Funkcionál $\int$}
+
+\begin{definition}[Funkcionál]
+    Pro libovolnou kompaktní\footnote{uzavřenou a omezenou} množinu $A\subset\mathbb{C}$
+    definujeme množiny holomorfních funkcí 
+    \begin{align*}
+        H_A &:= \{ f: \mathbb{C}\backslash A \to \mathbb{C} \mid f \,\,\text{je holomorfní} \}\\
+        H &:= \bigcup_{A\subset\mathbb{C}\,\text{je kompaktní}} H_A.
+    \end{align*}
+    $H$ tedy obsahuje všechny funkce holomorfní na doplňcích kompaktů.
+    Funkcionál $\int$, tedy funkci na množině $H$, definujeme předpisem
+    \[ \int : H \to \mathbb{C}, \,\, \int f := \int_{\partial R}f, \]
+    kde $f\in H_A$ a $R\subset\mathbb{C}$ je libovolný obdélník, že $\text{int}(R) \supset A$\footnote{A je obsažena uvnitř obdélníku $R$}.
+\end{definition}
+
+\begin{lemma}[Korektnost definice $\int$]
+    Definice funkcionálu $\int$ je korektní, jeho hodnota $\int f$ nezávisí na volbě obdélníku $R$.
+\end{lemma}
+
+\subsection{Póly funkcí}
+\subsection{Aplikace}
+
+
+\end{document}
