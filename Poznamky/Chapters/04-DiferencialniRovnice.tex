@@ -3,8 +3,260 @@
 \begin{document}
 
 \section{Úvod do diferenciálních rovnic}
-\subsection{Rovnice se separovanýmí proměnými}
-\subsection{Lineární rovnice}
-\subsection{Věta o existenci}
+
+\begin{definition}[Kontrahující zobrazení]
+    Kontrahující zobrazení $f:M\to M$ metrického prostoru $(M,d)$ do sebe.
+    Je to každé zobrazení, že pro nějakou konstantu $c\in(0,1)$ pro každé
+    $a,b\in M$ je \[ d(f(a), f(b)) \leq c\cdot d(a,b) \]
+    $f$ zkracuje vzdálenosti nějakým faktorem menším než 100\%.
+\end{definition}
+
+\begin{theorem}[Banachova o pevném bodu]
+    Každé kontrahující zobrazení $f:M\to M$ úlpného metrického prostoru do sebe
+    má právě jeden pevný bod --- takový bod $a \in M$, že \[ f(a) = a .\]
+    Dále platí, že každá posloupnost $(a_n) \subset M$ iterací funkce $f$,
+    kde bod $a_1 \in M$ je libovolný a pro $n>1$ je $a_n = f(a_{n-1})$, konverguje k tomuto
+    pevnému bodu $a$.
+\end{theorem}
+
+\begin{lemma}[Úplnost spojitých funkcí]
+    Pro každá dvě reálná čísla $a<b$ je metrický prostor \[ (C[a,b],d), \]
+    spojitých funkcí $f:[a,b]\to\mathbb{R}$ s maximovou metrikou
+    \[ d(f,g) = \max_{a\leq x\leq b} \abs{f(x) - g(x)} \]
+    úplný.
+\end{lemma}
+
+\subsection{Picardova věta}
+
+\begin{theorem}[Picardova]
+    Nechť $a,b \in \mathbb{R}$ a $F:\mathbb{R}^2\to\mathbb{R}$
+    je spojitá funkce, pro níž existuje konstanta $M > 0$, že pro každá tři čísla
+    $u,v,w \in\mathbb{R}$ je
+    \[ \abs{F(u,v) - F(u,w)} \leq M \cdot \abs{v-w}. \]
+    Potom existuje $\delta > 0$
+    a jednoznačně určená funkce \[ f:[a-\delta,a+\delta]\to\mathbb{R}, \]
+    že \[ f(a) = b \land \forall x \in [a-\delta,a+\delta]:f'(x) = F(x,f(x)). \]
+    V krajních bodech intervalů se zde i nadále hodnoty derivací berou jednostranně.
+\end{theorem}
+\begin{proof}
+    \LARGE
+    \textbf{TODO}
+\end{proof}
+
+\subsection{Peanova věta}
+
+\begin{theorem}[Peanova]
+    Nechť $a,b \in \mathbb{R}$, $(a,b) \in U\subset\mathbb{R}^2$, kde $U$ je otevřená množina v euklidovském
+    metrickém prostoru $\mathbb{R}^2$, a $F:U\to\mathbb{R}$ je spojitá funkce. Potom existuje
+    $\delta > 0$ a funkce
+    \[ f:[a-\delta, a+\delta]\to\mathbb{R}, \]
+    že
+    \[ f(a) = b \land \forall x\in[a-\delta,a+\delta]: f'(x)=F(x,f(x)). \]
+\end{theorem}
+
+\begin{theorem}[Arzelà-Ascoliova]
+    Nechť $I = [a,b]$ je kompaktní reálný interval a $C(I)$ je metrický prostor spojitých funkcí $f:I\to\mathbb{R}$
+    s maximovou metrikou. Množina $X\subset C(I)$ je kompaktní, právě když
+    \[ \exists c>0 \, \forall f \in X \, \forall x \in I: \abs{f(x)}<c \]
+    --- funkce v $X$ jsou \underline{stejně omezené} --- a
+    \[ \forall \varepsilon > 0 \, \exists \delta > 0 \, \forall f \in X \, \forall x,y \in I: \abs{x-y} < \delta \Rightarrow \abs{f(x)-f(y)} <\varepsilon \]
+    --- funkce v $X$ jsou \underline{stejně (stejnoměrně) spojité}.
+\end{theorem}
+
+\subsection{Příklady diferenciálních rovnic}
+
+\begin{remark}[Dělení diferenciálních rovnic]
+    Diferenciální rovnice dělíme na následující.
+    \begin{enumerate}
+        \item Obyčejné diferenciální rovnice\footnote{ODR, \textit{anglicky} ODE}, v nichž vystupují funkce jedné proměnné.
+        \item Parciální diferenciální rovnice\footnote{PDR, \textit{anglicky} PDE}, které obsahují funce více proměnných a jejich parciální derivace.
+    \end{enumerate}
+\end{remark}
+
+\subsubsection{Obyčejné diferenciální rovnice}
+
+\begin{example}[Newtonův zákon síly]
+    \[ mx'' = F, \]
+    kde $x=x(t)\in\mathbb{R}$ je poloha v čase $t$ částice o hmotnosti $m$ vystavené působení síly $F$\footnote{zde uvažujeme jen jednoduchý jednorozměrný případ}.
+    Síla může být obecně funkcí času, polohy částice a její rychlosti: $F = F(t,x,x')$. Nejjednodušší situace je pro konstantní $F$,
+    či obecněji pro $F$ závisející jen na $t$ --- pak $x(t) = \int\int F$. Nastává to třeba při působení
+    tíhového pole Země. To se nemění v čase a nezávisí na poloze částice\footnote{pro malá měřítka} a už vůbec ne na její rychlosti,
+    což jsou ale všechno idealizace\footnote{hlavně nezávislost na $x$}.
+    \underline{Rovnice volného pádu} pak je 
+    \[ mx'' = -mg, \]
+    kde $g$ je konstanta tíhového zrychlení.
+    Všechna její řešení jsou právě a jen funkce
+    \begin{center} $ X := \left\{ x(t) = -\frac{1}{2}gt^2 + c_1t + c_2 \mid c_1,c_2 \in \mathbb{R} \right\}, $ \end{center}
+    kde $c_1$ a $c_2$ jsou libovolné konstanty. Ty vyjadřují skutečnost, že pohyb padající částice
+    je určen jednoznačně teprve zadáním její polohy $x(t_0)$ a rychlosti $x'(t_0)$ v nějakém časovém okamžiku $t_0$.
+\end{example}
+
+\begin{example}[Rovnice radioaktivního rozpadu]
+    Rovnice radioaktivního rozpadu
+    \[ \frac{dR}{dt} = -kR \]
+    popisuje vývoj množství $R = R(t)$ rozpadajícího se radioaktivního materiálu v čase $t$\footnote{$k$ je materiálová konstanta}.
+    Je jasné, že každá funkce
+    \[ R = R(t) = c \exp(-kt), \]
+    kde $c$ je konstanta, je řešením této rovnice.
+\end{example}
+
+\subsubsection{Parciální diferenciální rovnice}
+
+\begin{example}[Laplaceova rovnice\footnote{rovnice potenciálu}]
+    \[ u = u(x,y)\, : \,\, \frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2} = 0 \]
+\end{example}
+
+\begin{example}[Rovnice difuze\footnote{rovnice vedení tepla}]
+    \[ u = u(x,t)\, : \,\, \alpha^2 \cdot \frac{\partial^2 u}{\partial x^2} = \frac{\partial u}{\partial y} \]
+\end{example}
+
+\begin{example}[Vlnová rovnice]
+    \[ u = u(x,t)\, : \,\, a^2\cdot \frac{\partial^2 u}{\partial x^2} = \frac{\partial^2 u}{\partial t^2} \]
+\end{example}
+
+\noindent
+V předchozích příkladech jsou $\alpha$ a $a$ konstanty.
+
+\subsection{Obecný tvar ODR, (Ne)lineární diferenciální rovnice}
+
+\begin{definition}[Obecný tvar]
+    Obecný tvar obyčejné diferenciální rovnice pro neznámou funkci $y = y(x)$ je ($n \in \mathbb{N}$)
+    \[ F(x, y, y', y'', \dots, y^{(n)}) = 0, \]
+    kde $F$ je nějaká funkce $n+2$ proměnných.
+\end{definition}
+
+\begin{definition}[Řád rovnice]
+    Nejvyššímu řádu $n$ derivace vyskytujícímu se v rovnici říkáme řád rovnice.
+\end{definition}
+
+\begin{definition}[(Ne)lineární diferenciální rovnice]
+    Diferenciální rovnice tvaru ($n \in \mathbb{N}$)
+    \[ a_n(x)y^{(n)} + a_{n-1}(x)y^{(n-1)} + \dots + a_1y' + a_0(x)y = b(x), \]
+    kde $a_i(x)$ a $b(x)$ jsou zadané funkce a $y = y(x)$ je neznámá funkce, je
+    lineární direfenciální rovnice (řádu $n$ a s pravou stranou $b(x)$).
+    Pokud je $b(x)$ identicky nulová, mluvíme o \underline{homogenní} lineární diferenciální rovnici.
+
+    \vspace{3mm}
+    \noindent
+    Diferenciální rovnice, které nejsou tohoto tvaru\footnote{a závisejí tedy na některých proměnných pro neznámou a její derivace nelineárně},
+    jsou \underline{nelineární} diferenciální rovnice.
+\end{definition}
+
+\begin{example}[Rovnice kyvadla]
+    Například rovnice kyvadla
+    \[ \theta'' + \left(\frac{g}{l}\right)\sin\theta = 0, \]
+    která popisuje pohyb kyvadla délky $l$ kývajícího se v homogenním tíhovém poli\footnote{$g$ je konstanta tíhového zrychlení}
+    --- úhel $\theta = \theta(t)$ je odchylka kyvadla od svislice v čase $t$ --- je nelineární.
+    Pro malé výchylky $\theta$ platí $\sin \theta = \theta$ a můžeme řešit lineární aproximaci rovnice kyvadla
+    $\theta'' + \left(\frac{g}{l}\right)\theta = 0$, což už je lineární ODR.
+\end{example}
+
+\begin{remark}
+    Rovnice volného pádu i rovnice radioaktivního rozpadu jsou lineární.
+\end{remark}
+
+\subsection{Algebraické diferenciální rovnice}
+
+\begin{definition}[Algebraické diferenciální rovnice\footnote{\textit{anglická} zkratka ADE}]
+    Diferenciální rovnice (opět $n \in \mathbb{N}$)
+    \[ F(x,y,y',y'',\dots,y^{(n)}) = 0, \]
+    v nichž $F$ je polynom v $n+2$ proměnných, jsou algebraické diferenciální rovnice.
+\end{definition}
+
+\subsubsection{Výsledky o ADE}
+
+\paragraph{1. výsledek}
+
+\begin{example}[Eulerova gama funkce $\Gamma(z)$]
+    Eulerova gamma funkce $\Gamma(z)$ je pro komplexní $z$ s $\text{re}(z)>0$
+    definována integrálem
+    \[ \Gamma(z) := \int_{0}^{+\infty} t^{z-1}e^{-t}\,\text{dt}. \]
+\end{example}
+
+\begin{theorem}[Hölder]
+    Funkce gama nesplňuje žádnou (netriviální) ADE, pro žádný nenulový komplexní
+    polynom $F$ s $n+2$ proměnnými.
+\end{theorem}
+
+\paragraph{2. výsledek}
+
+\begin{example}
+    Zavedeme si v jednotkovém komplexním kruhu $\abs{z} < 1$ funkce
+    \[ \vartheta(z) := \sum_{n=0}^{\infty}z^{n^2} \,\,\,\,\, \text{a} \,\,\,\,\, P(z) = \sum_{n=0}^{\infty}p(n)z^n := \prod_{n=1}^{\infty}\frac{1}{1-z^n}. \]
+\end{example}
+
+\begin{theorem}[Pozitivně o ADE]
+    Obě funkce $\vartheta(z)$ i $P(z)$ splňují netriviální (a dosti složité) ADE.
+\end{theorem}
+
+\paragraph{3. výsledek}
+
+\begin{example}[Stirlingova čísla (druhého druhu)]
+    Definujeme formální mocninnou řadu
+    \[ B(x) = \sum_{n=0}^{\infty} B_nx^n := \sum_{k=0}^{\infty}\frac{x^k}{(1-x)(1-2x)\dots(1-kx)}, \]
+    kde pro $k=0$ položíme sčítanec rovný $1$. Dále pro $k\in \mathbb{N}$ definujeme
+    \[ \sum_{n=1}^{\infty} S(n,k)x^n := \frac{x^k}{(1-x)(1-2x)\dots(1-kx)} \]
+    Vždy platí $S(n,k)\in\mathbb{N}_0$. Tyto čísla nazýváme Stirlingova čísla(druhého druhu).
+\end{example}
+
+\begin{example}[Bellova čísla]
+    V předchozím příkladě jsou koeficienty $B_n$ vyjádřeny pomocí Stirlingových čísel jako
+    \[ B_n = \sum_{k=1}^n S(n,k) \]
+    a $B_n$ je počet všech množinových rozkladů $n$-prvkové množiny. $B_n$ jsou takzvaná Bellova čísla.
+\end{example}
+
+\begin{theorem}[Klazar]
+    Formální mocninná řada
+    \[ B(x) = \sum_{n=0}^\infty B_nx^n, \]
+    to jest obyčejná generující funkce Bellových čísel, nesplňuje žádnou netriviální ADE.
+\end{theorem}
+
+\subsection{Rovnice se separovanými proměnými}
+
+\begin{definition}[Diferenciální rovnice se separovanými proměnnými]
+    DR se separovanými proměnnými je obecně nelineární diferenciální rovnice prvního řádu tvaru
+    \[ y(a) = b \land y' = f(x)\cdot g(y) \]
+    pro neznámou funkci $y = y(x)$ s předepsanou hodnotou $y(a) = b$ ($a,b\in\mathbb{R}$), kde $f(x)$, resp. $g(y)$, je
+    funkce definovaná a spojitá na nějakém otevřeném intervalu $I \ni a$, resp. $J \ni b$, a $g$ je na $J$ nenulová.
+\end{definition}
+
+\begin{remark}
+    Tento typ rovnice lze lokálně jednoznačně vyřešit funkcí $y: I'\to J$, pro nějaký otevřený interval
+    $I'$ splňující $a\in I' \subset I$. Řešení je vyjádřené (implicitně) pomocí neurčitých
+    integrálů funkcí $\frac{1}{g}$ a $f$.
+    Rovnici upravíme do tvaru \[\frac{y'}{g(y)} = f(x)\]
+    a ten přepíšeme pomocí pevně zvolené funkce $G:= \int \frac{1}{g}$(funkce primitivní na intervalu $J$ k funkci $\frac{1}{g}$)
+    jako
+    \[ \forall x \in I': G(y(x))' = f(x). \]
+    Máme tedy rovnici
+    \[ \forall x\in I': G(y(x)) = F(x) + c, \]
+    kde $F:=\int f$ je předem pevně zvolená funkce, primitivní na intervalu $I$ k funkci $f$, a $c$ je (integrační) konstanta. Řešení $y(x)$ původní
+    rovnice je tak dáno jako implicitní funkce vztahem
+    \[ \forall x \in I': \underbrace{G(y(x)) = F(x)+c}_{(*)}, \,\,\, \text{kde} \,\,\, G = \int \frac{1}{g}, F = \int f \]
+    a konstanta $c$ je určená vztahem $G(b) = F(a) + c$. Z věty o implicitní funkci\footnote{viz ma2-poznamky} plyne, že existuje otevřený onterval $I'$ s $a\in I' \subset I$
+    a jednoznačně určená funkce $y: I'\to J$, že $y(a) = b$ na $I'$ platí vztah $(*)$. Na $I'$ tedy máme jednoznačné řešení rovnice(v definici).
+\end{remark}
+
+\subsection{Lineární diferenciální rovnice 1. řádu}
+
+\begin{remark}[Lineární diferenciální rovnice 1. řádu]
+    Je to rovnice tvaru($x_0,y_0 \in \mathbb{R}$) \[ y(x_0) = y_0 \land y' + a(x)y = b(x), \]
+    kde $y = y(x)$ je neznámí funkce a funkce $a(x)$ a $b(x)$ jsou dané, definované a spojité na nějakém otevřeném intervalu $I \ni x_0$.
+\end{remark}
+
+\begin{remark}[Řešení lineární dif. rovnice 1. řádu]
+    Lokální jednoznačnost a existence řešení rovnice plyne z \textit{Picardovy věty}.
+    Rovnici tedy stačí vyřešit\footnote{vyjádřit její řešení z koeficientů $a$ a $b$ pomocí známých funkcí a známých operací}.
+    Nejprve nalezneme takovou funkci $c = c(x)$, tzv. \textit{integrační faktor}, že
+    \[ c\cdot(y' + ay) = (cy)'. \]
+    Pak $cy' + acy = cy' + c'y$ a $c$ musí splňovat rovnici $ac = c'$, čili $(\log c)' = a$. Funkce
+    $c=e^A$, kde $A = \int a$, má tedy požadovanou vlastnost. Výchozí lineární rovnici vynásobíme integračním faktorem a dostaneme
+    \[ (cy)' = c(y'+ay) = cb. \]
+    Takže $(cy)' = cb$ a $cy = D + c_0$, kde $D = \int cb$ a $c_0$ je integrační konstanta. Máme tedy
+    řešení $y = c^{-1}(D+c_0)$. Shrnuto,
+    \[ y(x) = e^{-A(x)} \left( \int e^{A(x)}b(x)\,\text{dx} + c_0 \right), \,\,\, \text{kde} \,\, A(x) = \int a(x)\,\text{dx}. \]
+    Všimněte si, že $y(x)$ je definovaná na celém $I$(definičním oboru funkcí $a$ a $b$) a že každé počáteční podmínce $y(x_0) = y_0$
+    odpovídá právě jedna hodnota integrační konstanty $c_0$, pro níž je splňena.
+\end{remark}
 
 \end{document}
