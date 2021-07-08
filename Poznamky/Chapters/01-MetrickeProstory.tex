@@ -384,8 +384,57 @@ Topologickou definici spojitosti jsme rozšířili na podprostory.
     Podmnožina $A\subset M$ metrického prostoru $(M,d)$ je kompaktní, právě když je topologicky kompaktní.
 \end{theorem}
 \begin{proof}
-    \LARGE
-    \textbf{TODO}
+    Bez újmy na obecnosti můžeme vzít $A = M$.
+    \begin{itemize}
+        \item {
+            \textbf{Implikace $\Rightarrow$:}\\
+            Nechť $(M,d)$ je kompaktní metrický prostor a \[ M = \bigcup_{i\in I} X_i \]
+            je jeho otevřené pokrytí, takže každá množina $X_i$ je otevřená.
+            Nalezneme jeho konečné podpokrytí. Nejprve dokážeme, že
+            \[ \forall \delta > 0 \, \exists \,\, \text{konečná množina} \,\, S_{\delta} \subset M: \bigcup_{a\in S_{\delta}} B(a,\delta) = M. \]
+            Kdyby to tak nebylo, pak by existovalo $\delta_0 > 0$ a posloupnost $(a_n) \subset M$, že $m < n \Rightarrow d(a_m,a_n) \geq \delta_0$
+            --- ve sporu s předpokládanou kompaktností množiny $M$ tato posloupnost nemá konvergentní podposloupnost.
+            Skutečně, kdyby(negujeme hořejší tvrzení o $\delta$ a $S_\delta$) existovalo $\delta_0 > 0$, že pro každou konečnou
+            množinu $S\subset M$ je
+            \[ M \backslash \bigcup_{a\in S} B(a,\delta_0) \neq \emptyset, \]
+            pak --- máme-li již definované body $a_1,a_2,\dots,a_n$ s $d(a_i, a_j) \geq \delta_0$ pro každé
+            $1 \leq i < j \leq n$ --- vezmeme $a_{n+1} \in M\backslash \bigcup_{i=1}^{n} B(a_i, \delta_0)$
+            a $a_{n+1}$ má od každého bodu $a_1,a_2,\dots, a_n$ vzdálenost alespoň $\delta_0$.
+            Tak definujeme celou posloupnost $(a_n)$.
+
+            Pro spor nyní předpokládejme, že hořejší otevřené pokrytí množiny $M$ množinami $X_i$ nemá konečné podpokrytí.
+            Tvrdíme, že odtud vyplývá, že \[ \forall n \in\mathbb{N} \, \exists b_n \in S_{\frac{1}{n}} \, \forall i \in I: B\left(b_n, \frac{1}{n}\right) \not\subset X_i. \]
+            Kdyby to tak nebylo, pak(negujeme předchozí tvrzení) by existovalo $n_0 \in\mathbb{N}$, že pro každé $b\in S_{\frac{1}{n_0}}$ existuje $i_b \in I$, že
+            $B\left(b,\frac{1}{n_0} \right) \subset X_{i_b}$. Pak ale, protože $M = \bigcup_{b\in S_{\frac{1}{n_0}}} B\left( b, \frac{1}{n_0} \right)$, dávají
+            indexy $J = \{ i_b \mid b\in S_{\frac{1}{n_0}} \} \subset I$ ve sporu s předpokladem konečné podpokrytí množiny $M$.
+
+            Na samostatném řádku uvedené tvrzení o $n$ a $b_n$ tak platí a lze vzít posloupnost $(b_n)\subset M$. Podle předpokladu má konvergentní
+            podposloupnost $b_{k_n}$ s $b := \lim b_{k_n} \in M$. Protože $X_i$ pokrývají $M$, existuje $j\in I$, že $b\in X_j$.
+            Díky otevřenosti $X_i$ existuje $r > 0$, že $B(b,r)\subset X_j$. Vezmeme tak velké $n \in \mathbb{N}$, že $\frac{1}{k_n} < \frac{r}{2}$
+            a $d(b,b_{k_n}) < \frac{r}{2}$. Pro každé $x\in B\left(b_{k_n}, \frac{1}{k_n}\right)$ pak podle $\Delta$-ové nerovnosti máme, že
+            $d(x,b)\leq d(x,b_{k_n}) + d(b_{k_n}, b) < \frac{r}{2} + \frac{r}{2} = r.$
+            Tedy \[ B\left( b_{k_n}, \frac{1}{k_n} \subset B(b,r) \subset X_j \right), \]
+            ve sporu s hořejší vlastností bodů $b_n$. Předpoklad, že konečné podpokrytí neexistuje, vede ke sporu.
+            Proto pokrytí $M$ množinami $X_i, i\in I$, má konečné podpokrytí.
+        }
+        \item {
+            \textbf{Implikace $\Leftarrow$:}\\
+            Předpokládáme, že každé otevřené pokrytí množiny $M$ má konečné podpokrytí a odvodíme z toho, že
+            každá posloupnost $(a_n) \subset M$ má konvergentní podposloupnost.
+            Nejprve ukážeme, že předpoklad
+            \[ \forall b \in M \, \exists r_b > 0: M_b := \{ n\in\mathbb{N}\mid a_n \in B(b,r_0) \} \,\,\,\text{je konečná} \]
+            vede ke sporu. Z pokrytí $M = \bigcup_{b\in M} B(b,r_b)$ bychom totiž vybrali konečné podpokrytí dané
+            konečnou množinou $N \subset M$ a nahlédli, že existuje $n_0$, že $n\geq n_0 \Rightarrow a_n \notin \bigcup_{b\in N} B(b,r_b)$,
+            protože množina indexů $\bigcup_{b\in N}M_b$ je konečná (konečné sjednocení konečných množin). To je spor,
+            protože $\bigcup_{b\in N}B(b,r_b) = M$. Předpoklad tedy neplatí a naopak je pravda, že
+            \[ \exists b \in M \, r > 0: M_r := \{ n \in N \mid a_n \in B(b,r) \}\,\,\,\text{je nekonečná}. \]
+            Teď už lehce z $(a_n)$ vybereme konvergentní podposloupnost $(a_{k_n})$ a limitou $b$. Nechť už jsme definovali
+            indexy $1 \leq k_1 < k_2 < \dots < k_n$, že $d(b,a_{k_i}) < \frac{1}{i}$ pro $i = 1,2,\dots,n$. Množina indexů
+            $M_{\frac{1}{n+1}}$ je nekonečná, takže můžeme zvolit takové $k_{n+1} \in \mathbb{N}$, že $k_{n+1} > k_n$
+            a $k_{n+1} \in M_{\frac{1}{n+1}}$. Pak i $d(b,a_{k_{n+1}}) < \frac{1}{n+1}$. Takto je definována posloupnost
+            $(a_{k_n})$ konvergující k $b$.
+        }
+    \end{itemize}
 \end{proof}
 
 \subsection{Souvislé množiny a metrické prostory}
