@@ -5,4 +5,9 @@ byla vypsána jako okruhy u zkoušky.
 
 Pokud naleznete nějaké chyby, kontaktujte mě prosím na Discordu nebo vytvořte Pull Request.
 
-Nejnovější podoba poznámek se nachází v `edit` branchi. V `master` branchi se nachází nejnovější rozumná podoba poznámek.
+## Disclaimer
+
+Poznámky obsahují (snad) všechny důležité definice, znění tvrzení a vět.
+Důkazy jsou ale bohužel sepsané jenom některé a to ještě narychlo.
+Sám už jsem zkoušku složil, takže se v blízké době k těmto poznámkám
+pravděpodobně nedostanu, abych je dokončil.
