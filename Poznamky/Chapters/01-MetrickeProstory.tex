@@ -510,8 +510,22 @@ platí následující věta.
     \[ \forall u \in \mathbb{C} \hspace{1mm} \forall n \in \mathbb{N} \hspace{1mm} \exists v \in \mathbb{C}: v^n = u. \]
 \end{theorem}
 \begin{proof}
-    \LARGE
-    TODO
+    Předpokládáme, že $u \in S$ a že $n \in \mathbb{N}$ je liché. Potřebujeme dokázat, že zobrazení
+    $$
+    f(z)=z^n: S \rightarrow S,
+    $$
+    které je zřejmě spojité, je na. Pro spor předpokládejme, že existuje číslo
+    $$
+    w \in S \backslash f[S]
+    $$
+    to jest $w$ nemá $n$-tou odmocninu. Vzhledem k lichosti $n \mathrm{i}-w \in$ $S \backslash f[S]$, protože vždy $f(-z)=-f(z)$.
+    Body $w$ a $-w$ vedeme přímku $\ell \subset \mathbb{C}$. Pak máme rozklad
+    $$
+    \mathbb{C}=A \cup \ell \cup B
+    $$
+    kde $A$ a $B$ jsou otevřené poloroviny určené přímkou $\ell$. Máme: $(A \cup B) \cap S=S \backslash\{w,-w\},\{1,-1\} \subset f[S] \cap(A \cup B)$ 
+    a $\mid A \cap$ $\{1,-1\} \mid=1$. Množiny $A$ a $B$ tedy trhají množinu $f[S]$ a ta je nesouvislá. To je ale spor s větou o souvislosti a spojitosti,
+    protože $f[S]$ je obraz souvislé množiny $S$ (její souvislost jsme zdůvodnili) spojitou funkcí $f$ a je tedy souvislá.
 \end{proof}
 
 \begin{lemma}[Redukce na $n$-té odmocniny]
