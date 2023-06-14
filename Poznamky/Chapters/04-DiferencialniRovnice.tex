@@ -41,33 +41,25 @@
 \begin{proof}
     Nechť $I = [a-\delta,a+\delta]$ je libovolný kompaktní interval, kde $\delta > 0$ je z předpokladu věty.
     Je jednoduché ukázat, že řešení rovnice pro neznámou funkci $f$ je ekvivalentní hledání řešení pro rovnici
-    $$
-    \forall x \in I: f(x) = b + \int_{a}^{x} F(t,f(t) \text{ dt}).
-    $$
+    \[ \forall x \in I: f(x) = b + \int_{a}^{x} F(t,f(t) \text{ dt}). \]
     Ukážeme, že pro jakékoliv malé $\delta > 0$, tahle rovnice, a tedy taky původní rovnice, má právě jedno řešení
     na $I$. Pravou stranu rovnice definuje mapování 
-    $$
-    A: C(I) \to C(I)
-    $$
+    \[ A: C(I) \to C(I) \]
     z prostoru spojitých funkcí $f:I\to\mathbb{R}$ do sebe, tedy $A(f) = g$, kde
-    $$
-    \text{pro } x \in I, g(x) := b + \int_{a}^{x} F(t,f(t) \text{ dt}).
-    $$
+    \[ \text{pro } x \in I, g(x) := b + \int_{a}^{x} F(t,f(t) \text{ dt}). \]
     Ukážeme, že $A$ je kontrahující zobrazení metrického prostoru $(C(I),d)$ s maximovou metrikou $d$ do sebe.
     Dle Banachovy věty o pevném bodu má tedy $A$ jediněčný pevný bod, funkce $f \in C(I)$, taková že $A(f) = f$,
     a obě rovnice mají jediněčné řešení.
     Dokážeme, že pro jakékoliv malé $\delta > 0$ je $A$ kontrahující zobrazení. Nechť $f,g \in C(I)$, pak
-    \[
-        \begin{aligned} 
-            d(A(f),A(g)) &= \max_{x\in I} \abs{A(f)(x) - A(g)(x)} \\
-            &= \max_{x\in I} \abs{\int_{a}^{x} F(t,f(t)) \text{ dt} - \int_{a}^{x} F(t,g(t)) \text{ dt}} \\
-            &= \max_{x\in I} \abs{\int_{a}^{x} F(t,f(t)) - F(t,g(t)) \text{ dt}} \\
-            &\leq \max_{x\in I} \int_{a}^{x} \abs{F(t,f(t)) - F(t,g(t))} \text{ dt} \\
-            &\leq \max_{x\in I} \int_{a}^{x} M \cdot \abs{f(t) - g(t)} \text{ dt} \\
-            &\leq \max_{x\in I} \int_{a}^{x} M \cdot d(f,g) \text{ dt} \\
-            &= \delta M \cdot d(f,g).
-        \end{aligned}
-    \] 
+    \[\begin{aligned} 
+        d(A(f),A(g)) &= \max_{x\in I} \abs{A(f)(x) - A(g)(x)} \\
+        &= \max_{x\in I} \abs{\int_{a}^{x} F(t,f(t)) \text{ dt} - \int_{a}^{x} F(t,g(t)) \text{ dt}} \\
+        &= \max_{x\in I} \abs{\int_{a}^{x} F(t,f(t)) - F(t,g(t)) \text{ dt}} \\
+        &\leq \max_{x\in I} \int_{a}^{x} \abs{F(t,f(t)) - F(t,g(t))} \text{ dt} \\
+        &\leq \max_{x\in I} \int_{a}^{x} M \cdot \abs{f(t) - g(t)} \text{ dt} \\
+        &\leq \max_{x\in I} \int_{a}^{x} M \cdot d(f,g) \text{ dt} \\
+        &= \delta M \cdot d(f,g).
+    \end{aligned}\]
     Ku příkladu, když $\delta = \frac{1}{2}M$, pak $A$ je kontrahující zobrazení s konstantou $c = \frac{1}{2}$.
 \end{proof}
 
