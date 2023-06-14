@@ -572,8 +572,35 @@ Uzavřená koule je uzavřená množina a pro každé $a\in M$ a kladná čísla
 
 \begin{theorem}[Baireova]
     Nechť $(M,d)$ je úplný metrický prostor a \[ M = \bigcup_{n=1}^{\infty} X_n. \]
-    Pak některá množina $X_n$ není řídká.
+    Pak některá množina $X_n$ není řídká. Jinak řečeno, žádný úplný metrický prostor není spočetný sjednocení řídkých množin.
 \end{theorem}
+\begin{proof}
+    Pro spor předpokládáme, že všechny množiny $X_n$ jsou řídké. Sestrojíme posloupnost $\left(\overline{B_n}\right)$ do sebe vnořených 
+    uzavřených koulí, jejichž středy konvergují k bodu $a \in M$ ležícímu mimo všechny $X_n$, což je pochopitelně spor.
+    Nechť $B(b, 1) \subset M$ je libovolná koule. Protože $X_1$ je řídká množina, existuje 
+    $a_1 \in M$ a $s_1>0$, že $B\left(a_1, s_1\right) \subset B(b, 1)$ a $B\left(a_1, s_1\right) \cap X_1=\emptyset$. 
+    
+    Položíme
+    \[\bar{B}\left(a_1, r_1\right):=\bar{B}\left(a_1, \min \left(s_1 / 2,1 / 2\right)\right)\]
+
+    Pak $\bar{B}\left(a_1, r_1\right) \subset B\left(a_1, s_1\right)$, tedy $\bar{B}\left(a_1, r_1\right) \cap X_1=\emptyset$, a $r_1 \leq 1 / 2$. 
+    Nechť jsou už definované takové uzavřené koule
+    \[\bar{B}\left(a_1, r_1\right) \supset \bar{B}\left(a_2, r_2\right) \supset \cdots \supset \bar{B}\left(a_n, r_n\right)\]
+    že pro $i=1,2, \ldots, n$ je $\bar{B}\left(a_i, r_i\right) \cap X_i=\emptyset$ a $r_i \leq 2^{-i}$. Protože $X_{n+1}$ je řídká množina, 
+    existuje $a_{n+1} \in M$ a $s_{n+1}>0$, že $B\left(a_{n+1}, s_{n+1}\right) \subset$ $B\left(a_n, r_n\right)$ a $B\left(a_{n+1}, s_{n+1}\right) \cap X_{n+1}=\emptyset$. 
+
+    Položíme
+    \[\bar{B}\left(a_{n+1}, r_{n+1}\right):=\bar{B}\left(a_{n+1}, \min \left(s_{n+1} / 2,2^{-n-1}\right)\right)\]
+    Pak
+    \[\bar{B}\left(a_{n+1}, r_{n+1}\right) \subset \bar{B}\left(a_n, r_n\right) \cap B\left(a_{n+1}, s_{n+1}\right)\]
+    tedy i $\bar{B}\left(a_{n+1}, s_{n+1}\right) \cap X_{n+1}=\emptyset$, a $r_{n+1} \leq 2^{-n-1}$.
+    Posloupnost $\left(a_n\right) \subset M$ středů výše definovaných uzavřených koulí je Cauchyova, protože
+    $m \geq n \Rightarrow \bar{B}\left(a_m, r_m\right) \subset \bar{B}\left(a_n, r_n\right)$ a tedy $d\left(a_m, a_n\right) \leq r_n \leq \frac{1}{2^n}$
+    Použijeme úplnost metrického prostoru $(M, d)$ a vezmeme limitu
+    \[a:=\lim a_n \in M\]
+    Protože $m > n \Rightarrow a_m \in \bar{B}(a_n,r_n)$ a z definice uzavřené koule je každá $\bar{B}(a_n,r_n)$ uzavřená množina, leží limita $a$ v 
+    každé uzavřené kouli $\bar{B}(a_n,r_n)$ a tedy v žádné z množin $X_n$, což je spor.
+\end{proof}
 
 \begin{consequence}[o úplném metrickém prostoru]
     Každý úplný metrický prostor $(M,d)$, který neobsahuje izolované body, je nespočetný.
