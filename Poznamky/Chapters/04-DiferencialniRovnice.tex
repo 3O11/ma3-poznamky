@@ -25,6 +25,35 @@
     \[ d(f,g) = \max_{a\leq x\leq b} \abs{f(x) - g(x)} \]
     úplný.
 \end{lemma}
+\begin{proof}
+    Nechť $(f_n) \subset C(I)$ je Cauchyovská posloupnost, t. j.
+    \[ \forall \varepsilon > 0 \, \exists m (n, n' > m \Rightarrow ||f_n - f_{n'}|| < \varepsilon)\]
+    Pak pro každé $x \in I$ je posloupnost $(f_n(x)) \subset \mathbb{R}$ Cauchyovská, tedy konverguje a můžeme definovat
+    \[f(x) := \lim_{n\to\infty} f_n(x).\]
+    Tedy máme funkci $f: I \to \mathbb{R}$, s vlastností $f_n \to f$ bodově.
+    Dokážeme uniformní konvergenci, t. j. $||f - f_n|| \to 0$.
+    Nechť $x \in I$ a $\varepsilon > 0$. Můžeme vzít $m$ takové, že cauchyovská podmínka 
+    platí pro $\varepsilon/2$. Pak pro $k \geq m$ takové, že $||f_k(x) - f(x)|| < \varepsilon/2$,
+    získáme, že $n \geq m$ implikuje
+    $$
+    ||f_n(x) - f(x)|| \leq ||f_n(x) - f_k(x)|| + ||f_k(x) - f(x)|| < \varepsilon/2 + \varepsilon/2 = \varepsilon.
+    $$
+    Tedy limita $f_n = f$ je v tomhle metrickém prostoru.
+    Zůstává dokázat, že $f$ je spojitá. Nechť $x_0 \in I$ a $\varepsilon > 0$.
+    Zvolme $n_0$ takové, že
+    $$
+    n \geq n_0 \Rightarrow ||f - f_n||_\infty \leq \varepsilon/2.
+    $$
+    Zvolme $\delta > 0$ takové, že
+    $$
+    x \in U(x_0, \delta) \cap I \Rightarrow ||f_{n_0}(x) - f_{n_0}(x_0)|| < \varepsilon/2.
+    $$
+    Pak $\forall x \in U(x_0, \delta) \cap I$ platí
+    $$
+    |f(x) - f(x_0)| \leq |f(x) - f_{n_0}(x)| + |f_{n_0}(x) - f_{n_0}(x_0)| \leq \varepsilon/2 + \varepsilon/2 = \varepsilon
+    $$
+    a tedy $f$ je spojitá v $x_0$.
+\end{proof}
 
 \subsection{Picardova věta}
 
