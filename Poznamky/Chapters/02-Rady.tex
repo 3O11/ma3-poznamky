@@ -466,8 +466,47 @@ jako $d_n(G)$, resp. $a_n(G)$.
     \[ \lim_{n\to\infty} \frac{a_n(\mathbb{Z}^d)}{d_n(\mathbb{Z}^d)} = \lim_{n\to\infty}\frac{a_n(\mathbb{Z}^d)}{(2d)^n} < 1 \]
 \end{theorem}
 \begin{proof}
-    \LARGE
-    \textbf{TODO}
+    Nechť $d = 2$ a $w = (v_0, v_1, \dots, v_n)$ je procházka v grafu $\mathbb{Z}^2$ s délkou $n \in \mathbb{N}_0$.
+    Nechť $b_n$ je počet procházek $w$ s $v_0 = v_n = \bar{0}$ a $c_n$ je počet procházek $w$ s $v_0 = v_n = \bar{0}$,
+    ale $v_j \neq \bar{0}$ pro $ 0 < j < n$. Položíme $c_0 := 0$. Je jasné, že pro každé $n \in \mathbb{N}_0$ je
+    $a_n \leq d_n, c_n \leq b_n \leq d_n$ a $d_n = 4^n$. Procházky počítané $a_n$ rozdělíme do skupin podle jejich prvního návratu do 
+    $\bar{0}$ ve vrcholu $v_j$. Pomocí vztahů $d_n = 4^n$ a $a_n \leq 4^n$ dostaneme pro každé $n \in \mathbb{N}_0$ rovnice
+    \[
+        a_n = \sum_{j=0}^{n} c_jd_{n-j} \text{, takže} \hspace{3mm} \frac{a_n}{4^n} = \sum_{j=0}^{n} \frac{c_j}{4^j} \leq 1.
+    \]
+    Tedy stačí dokázat, že 
+    \[ \sum_{j=0}^{n} \frac{c_j}{4^j} = 1.\]
+    Druhý vztah, který použijeme, je mezi mocninnými řadami
+    \[ B(x) = \sum_{n=\geq 0} \frac{b_n}{4^n}x^n = 1 + \dots \text{ a } C(x) = \sum_{n\geq 0} \frac{c_n}{4^n}x^n = \frac{x^2}{4} + \dots, \]
+    totiž, že
+    \[ B(x) = \frac{1}{1-C(x)} = \sum_{k \geq 0} C(x)^k. \]
+    Snadno se to nahlédne formálně, tedy jako vztah mezi formálními mocninnými řadami, rozdělením procházky počítané $b_n$ jejími $k+1$ návraty do $\dots{0}$
+    na $k$ úseků s délkami $j_1, \dots, j_k$ splňujícími $j_1 + \dots + j_k = n$. Ty jsou počítány čísly $c_{j1}, \dots, c_{jk}$.
+    Tento vztah také platí na úrovni reálných funkcí $B(x)$ a $C(x)$ pro $x \in [0,1)$, protože obě mocinné řady mají poloměry konvergence $\geq 1$.
+    Nyní stačí dokázat, že 
+    \[
+        \lim_{x\to 1^-} B(x) = +\infty.
+    \]
+    Skutečně, pak hořejší vztah implikuje, že $\lim_{x\to 1^-} C(x) = 1$ a tedy podle slabé Abelove věty dává, že
+    \[
+        \sum_{j=0}^\infty \frac{c_j}{4^j} =: C(1) = \lim_{x\to 1^-} C(x) = 1.
+    \]
+    To je přesně požadovaný součet nekonečné řady.
+    Abychom dokázali, že $\lim_{x\to 1^-} B(x) = +\infty$, stačí dokázat, že
+    \[
+        B(1) := \sum_{j = 0}^\infty \frac{b_j}{4^j} = +\infty.
+    \]
+    To dokážeme spočtením $b_j$. Patrně $b_n = 0$ pro liché $n$. Pro sudé délky $n$ je
+    \[
+        b_{2n} = \sum_{j=0}^{n}\frac{(2n)!}{j!\dot (n-j)!\dot j! \dot (n-j)!} = \binom{2n}{n} \sum_{j=0}^{n} \binom{n}{j}^2 = \binom{2n}{n}^2.
+    \]
+    První rovnost plyne uvážením všech $j$ kroků doprava v procházce $w$. Ty vynucují týž počet $j$ kroků doleva a stejný počet $n-j$ kroků nahoru a dolů.
+    Tyto možnosti počítá multinomický koeficient $\binom{2n}{j,j,n-j,n-j}$. Poslední rovnost plyne ze známé binomické identity. Stirlingův vzorec pro aproximaci faktoriálu vede na
+    asymptotiku $\binom{2n}{n} \sim cn^{-\frac{1}{2}}4^n$ pro $n \to \infty$ a nějaké $c > 0$. Tedy $2n$-tý sčítanec v řadě $B(1)$ je $\sim c^2n^{-1}$. Proto
+    \[
+        B(1) = \sum_{n=0}^\infty \frac{b_{n}}{4^{n}} = \sum_{n=0}^\infty \binom{2n}{n}^2 4^{-2n} = +\infty
+    \]
+    protože řada $\sum n^{-1} = +\infty$.
 \end{proof}
 
 \begin{proof}
