@@ -33,25 +33,17 @@
     Tedy máme funkci $f: I \to \mathbb{R}$, s vlastností $f_n \to f$ bodově.
     Dokážeme uniformní konvergenci, t. j. $||f - f_n|| \to 0$.
     Nechť $x \in I$ a $\varepsilon > 0$. Můžeme vzít $m$ takové, že cauchyovská podmínka 
-    platí pro $\varepsilon/2$. Pak pro $k \geq m$ takové, že $||f_k(x) - f(x)|| < \varepsilon/2$,
+    platí pro $\varepsilon/2$. Pak pro $k \geq m$ takové, že $\norm{f_k(x) - f(x)} < \varepsilon/2$,
     získáme, že $n \geq m$ implikuje
-    $$
-    ||f_n(x) - f(x)|| \leq ||f_n(x) - f_k(x)|| + ||f_k(x) - f(x)|| < \varepsilon/2 + \varepsilon/2 = \varepsilon.
-    $$
+    \[ \norm{f_n(x) - f(x)} \leq \norm{f_n(x) - f_k(x)} + \norm{f_k(x) - f(x)} < \varepsilon/2 + \varepsilon/2 = \varepsilon. \]
     Tedy limita $f_n = f$ je v tomhle metrickém prostoru.
     Zůstává dokázat, že $f$ je spojitá. Nechť $x_0 \in I$ a $\varepsilon > 0$.
     Zvolme $n_0$ takové, že
-    $$
-    n \geq n_0 \Rightarrow ||f - f_n||_\infty \leq \varepsilon/2.
-    $$
+    \[ n \geq n_0 \Rightarrow \norm{f - f_n}_\infty \leq \varepsilon/2. \]
     Zvolme $\delta > 0$ takové, že
-    $$
-    x \in U(x_0, \delta) \cap I \Rightarrow ||f_{n_0}(x) - f_{n_0}(x_0)|| < \varepsilon/2.
-    $$
+    \[ x \in U(x_0, \delta) \cap I \Rightarrow \norm{f_{n_0}(x) - f_{n_0}(x_0)} < \varepsilon/2. \]
     Pak $\forall x \in U(x_0, \delta) \cap I$ platí
-    $$
-    |f(x) - f(x_0)| \leq |f(x) - f_{n_0}(x)| + |f_{n_0}(x) - f_{n_0}(x_0)| \leq \varepsilon/2 + \varepsilon/2 = \varepsilon
-    $$
+    \[ \lvert f(x) - f(x_0)\rvert \leq \lvert f(x) - f_{n_0}(x) \rvert + \lvert f_{n_0}(x) - f_{n_0}(x_0) \rvert \leq \varepsilon/2 + \varepsilon/2 = \varepsilon \]
     a tedy $f$ je spojitá v $x_0$.
 \end{proof}
 
