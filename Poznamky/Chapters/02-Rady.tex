@@ -169,10 +169,37 @@ ale v bodech nespojitosti má vlastní jednostranné limity a má v nich definov
 
 \subsection{Basilejský problém}
 
-\begin{example}[Basilejský problém]
-    \LARGE
-    TODO
-\end{example}
+\begin{theorem}[Basilejský problém]
+    \[ \sum_{n=1}^{\infty} \frac{1}{n^2} = \frac{\pi^2}{6} \]
+\end{theorem}
+\begin{proof}
+    Spočítáme Fourierovu řadu funkce $f:\mathbb{R}\to\mathbb{R}$ definované nad intervalem $[-\pi,\pi]$ jako
+    $f(x) := x^2$. a $2\pi$-periodicky rozšířené na celou reálnou osu (Co je možné díky faktu, že $(-\pi)^2 = \pi^2$).
+    Její koeficienty sinů jsou nulové. První nenulový koeficient kosinu je
+    \[ a_0 = \frac{2}{\pi}\int_{0}^{\pi}x^2\,\text{dx} = \frac{2\pi^2}{3}.\]
+    Dále
+    $$
+    \begin{aligned}
+    a_n & =\frac{2}{\pi} \int_0^\pi x^2 \overbrace{\cos (n x)}^{(\sin (n x) / n)^{\prime}} \mathrm{dx} \\
+    & =\frac{2}{\pi n} \underbrace{\left[x^2 \sin (n x)\right]_0^\pi}_{0-0=0}-\frac{4}{\pi n} \int_0^\pi x \overbrace{\sin (n x)}^{(-\cos (n x) / n)^{\prime}} \mathrm{dx} \\
+    & =\frac{4}{\pi n^2} \underbrace{[x \cos (n x)]_0^\pi}_{\pi(-1)^n}-\frac{4}{\pi n^2} \underbrace{\int_0^\pi \cos (n x) \mathrm{dx}}_{0-0=0} \\
+    & =(-1)^n \frac{4}{n^2} .
+    \end{aligned}
+    $$
+    Protože $f$ je spojitá a hladká na intervalu $[-\pi,\pi]$, je $F_f(x) = f(x)$ 
+    pro každé $a \in \mathbb{R}$, a tedy:
+    $$
+    f(a)=\frac{a_0}{2}+\sum_{n=1}^{\infty} a_n \cos (n a)=\frac{\pi^2}{3}+4 \sum_{n=1}^{\infty}(-1)^n \frac{\cos (n a)}{n^2}
+    $$  
+    Pro $a = \pi$ dostaneme
+    $$
+    \pi^2 = f(\pi)=\frac{\pi^2}{3}+4 \sum_{n=1}^{\infty}(-1)^n \frac{(-1)^n}{n^2}
+    $$
+    a tedy
+    $$
+    \sum_{n=1}^{\infty} \frac{1}{n^2}=\frac{\pi^2}{6}.
+    $$
+\end{proof}
 
 \subsection{Divergentní řady}
 
